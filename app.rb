@@ -1,7 +1,7 @@
 require 'sinatra/base'
 require 'tilt/erb'
 
-module ChatDemo
+module ActiveCinema
   class App < Sinatra::Base
     get "/" do
       erb :"index.html"

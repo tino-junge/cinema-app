@@ -1,6 +1,6 @@
 require './app'
-require './middlewares/chat_backend'
+require './middlewares/websocket_backend'
 
-use ChatDemo::ChatBackend
+use ActiveCinema::WebsocketBackend
 
-run ChatDemo::App
+run ActiveCinema::App
