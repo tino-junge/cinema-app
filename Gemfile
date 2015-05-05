@@ -4,5 +4,6 @@ source "https://rubygems.org"
 
 gem "faye-websocket"
 gem "sinatra"
+gem "sinatra-contrib"
 gem "puma"
 gem "redis"

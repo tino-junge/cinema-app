@@ -1,0 +1,7 @@
+development:
+  video_url:
+    test_03: "https://owncloud.hpi.de/public.php?service=files&t=d039b24415d22e191b6861abdad69ff8&download"
+
+production:
+  video_url:
+    test_03: "test"

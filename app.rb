@@ -1,8 +1,12 @@
 require 'sinatra/base'
+require 'sinatra/config_file'
 require 'tilt/erb'
 
 module ActiveCinema
   class App < Sinatra::Base
+    register Sinatra::ConfigFile
+    config_file './config/config.yml'
+
     get "/" do
       erb :"index.html"
     end
@@ -18,6 +22,7 @@ module ActiveCinema
     end
 
     get "/movie" do
+      @video_link = settings.video_url["test_03"]
       erb :"movie.html"
     end
   end
