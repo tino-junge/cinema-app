@@ -12,5 +12,13 @@ module ChatDemo
       @scheme = ENV['RACK_ENV'] == "production" ? "wss://" : "ws://"
       erb :"application.js"
     end
+
+    get "/app" do
+      erb :"app.html"
+    end
+
+    get "/movie" do
+      erb :"movie.html"
+    end
   end
 end

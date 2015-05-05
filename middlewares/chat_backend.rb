@@ -27,14 +27,14 @@ module ChatDemo
     def call(env)
       if Faye::WebSocket.websocket?(env)
         ws = Faye::WebSocket.new(env, nil, ping: KEEPALIVE_TIME)
-        ws.on :open do |event|
+        ws.on :open do
           p [:open, ws.object_id]
           @clients << ws
         end
 
         ws.on :message do |event|
           p [:message, event.data]
-          @clients.each {|client| client.send(event.data) }
+          @clients.each { |client| client.send(event.data) }
           #@redis.publish(CHANNEL, sanitize(event.data))
         end
 
