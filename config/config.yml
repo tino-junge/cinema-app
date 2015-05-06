@@ -1,7 +1,11 @@
 development:
   video_url:
-    test_03: "https://owncloud.hpi.de/public.php?service=files&t=d039b24415d22e191b6861abdad69ff8&download"
+    test_03: "videos/Test_03.mp4"
+    test_03a: "videos/Test_03a.mp4"
+    test_03b: "videos/Test_03b.mp4"
 
 production:
   video_url:
-    test_03: "test"
+    test_03: "https://owncloud.hpi.de/public.php?service=files&t=d039b24415d22e191b6861abdad69ff8&download"
+    test_03a: "https://owncloud.hpi.de/public.php?service=files&t=656deaceb5973b366e3a912fd74dab75&download"
+    test_03b: "https://owncloud.hpi.de/public.php?service=files&t=5c32d5a4b51637021bd363f870553a7a&download"
