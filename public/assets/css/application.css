@@ -1,8 +1,20 @@
 body {
-	background: black;
+  background: black;
+  overflow: hidden;
 }
 
-#chat-text {
-  overflow: auto;
-  height: 500px;
+#video_player {
+  position: relative;
+}
+
+#video_stream {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+#decision_logo {
+  position: absolute;
+  right: 1%;
+  bottom: 15%;
 }
