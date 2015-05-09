@@ -7,30 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <div id='video_player'>
-      <video id="video_stream" preload autoplay controls>
+    <div id='video-player'>
+      <video id="video-stream" preload autoplay controls>
         <source src='<%= @video_link %>' type='video/mp4'>
         Your browser does not support the video tag.
       </video>
-      <div id="decision_logo">
+      <div id="decision-logo">
         <img src="assets/img/decison_logo.png">
       </div>
     </div>
 
     <script type="text/javascript" src="assets/js/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="assets/js/application.js"></script>
-    <script type="text/javascript">
-      var video = document.getElementById("video_stream");
-
-      $("#video_stream").on("timeupdate", function() {
-          if(this.currentTime > 72) {
-            $("#decision_logo").fadeIn( 3000 );
-          }
-      });
-
-      $(document).ready(function() {
-        $("#decision_logo ").hide(); 
-      });
-    </script>
   </body>
 </html>

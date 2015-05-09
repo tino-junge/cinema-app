@@ -1,18 +1,26 @@
-var scheme   = "<%= @scheme %>";
-var uri      = scheme + window.document.location.host + "/";
-var ws       = new WebSocket(uri);
+var scheme          = "<%= @scheme %>";
+var uri             = scheme + window.document.location.host + "/";
+var ws              = new WebSocket(uri);
+var video           = document.getElementById("video-stream");
+var decisionTime    = 20;
+var decicsionActive = false;
+
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
-  $("#chat-text").append("<div class='panel panel-default'><div class='panel-heading'>" + data.handle + "</div><div class='panel-body'>" + data.text + "</div></div>");
-  $("#chat-text").stop().animate({
-    scrollTop: $('#chat-text')[0].scrollHeight
-  }, 800);
+  $("#decision-panel").html("<b> Was soll ich machen? </b> <p> <button> A: Milch holen </button> </p> <p> <button> B: Nichts tun </button> </p>");
 };
 
-$("#input-form").on("submit", function(event) {
-  event.preventDefault();
-  var handle = $("#input-handle")[0].value;
-  var text   = $("#input-text")[0].value;
-  ws.send(JSON.stringify({ handle: handle, text: text }));
-  $("#input-text")[0].value = "";
+$("#video-stream").on("timeupdate", function() {
+    // TODO: Just calculate that once
+    var decicsionTime = this.duration - decisionTime;
+
+    if(this.currentTime > decicsionTime && decicsionActive == false) {
+      $("#decision-logo").fadeIn( 3000 );
+      ws.send(JSON.stringify({ decision: 'active' }));
+      decicsionActive = true;
+    }
+});
+
+$(document).ready(function() {
+  $("#decision-logo ").hide();
 });

@@ -3,17 +3,17 @@ body {
   overflow: hidden;
 }
 
-#video_player {
+#video-player {
   position: relative;
 }
 
-#video_stream {
+#video-stream {
   position: relative;
   height: 100%;
   width: 100%;
 }
 
-#decision_logo {
+#decision-logo {
   position: absolute;
   right: 1%;
   bottom: 15%;
