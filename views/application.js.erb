@@ -2,24 +2,53 @@ var scheme          = "<%= @scheme %>";
 var uri             = scheme + window.document.location.host + "/";
 var ws              = new WebSocket(uri);
 var video           = document.getElementById("video-stream");
+var videoSrc        = null; //video.currentSrc;
 var decisionTime    = 20;
 var decicsionActive = false;
 
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
-  $("#decision-panel").html("<b> Was soll ich machen? </b> <p> <button> A: Milch holen </button> </p> <p> <button> B: Nichts tun </button> </p>");
+
+  if (data.decision == 'active') {
+    $("#decision-panel").html("<b> Was soll ich machen? </b> <p> <button id='A'> A: Milch holen </button> </p> <p> <button id='B'> B: Nichts tun </button> </p>");
+  } else if (data.decided) {
+    // TODO: split js files: one for movie, one for app
+    if (video) {
+      videoSrc = video.currentSrc.slice(0,-4).concat(data.decided).concat('.mp4');
+    }
+  }
 };
 
 $("#video-stream").on("timeupdate", function() {
     // TODO: Just calculate that once
     var decicsionTime = this.duration - decisionTime;
 
-    if(this.currentTime > decicsionTime && decicsionActive == false) {
+    if (this.currentTime > decicsionTime && decicsionActive == false) {
       $("#decision-logo").fadeIn( 3000 );
       ws.send(JSON.stringify({ decision: 'active' }));
       decicsionActive = true;
     }
 });
+
+$("#video-stream").on("ended", function() {
+  if (videoSrc) {
+    var source = document.querySelectorAll("#video-player video source");
+    source[0].src = videoSrc;
+    video.load();
+    video.play();
+    $("#decision-logo ").hide();
+    videoSrc = null;
+  } else {
+    $("#decision-logo").html('The End');
+    $("#decision-logo").fadeIn( 3000 );
+  }
+});
+
+function handleDecision(e) {
+  var decision = e.target;
+  ws.send(JSON.stringify({ decided: decision.id }));
+  $("#decision-panel").html('Waiting for next decision ...');
+};
 
 $(document).ready(function() {
   $("#decision-logo ").hide();

@@ -22,15 +22,7 @@ module ActiveCinema
 
         ws.on :message do |event|
           p [:message, event.data]
-
-          # Active Decision
-          if event.data[:decision] == 'active'
-            @clients.each { |client| client.send(event.data) }
-
-          # No specific action
-          else
-            @clients.each { |client| client.send(event.data) }
-          end
+          @clients.each { |client| client.send(event.data) }
         end
 
         ws.on :close do |event|
