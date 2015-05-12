@@ -15,6 +15,9 @@ module ActiveCinema
     get "/js/application.js" do
       content_type :js
       @scheme = ENV['RACK_ENV'] == "production" ? "wss://" : "ws://"
+      # Only Testing
+      @video_link_a = settings.video_url["test_03a"]
+      @video_link_b = settings.video_url["test_03b"]
       erb :"application.js"
     end
 

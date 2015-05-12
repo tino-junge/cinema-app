@@ -5,6 +5,9 @@ var video           = document.getElementById("video-stream");
 var videoSrc        = null; //video.currentSrc;
 var decisionTime    = 20;
 var decicsionActive = false;
+// Only Testing
+var videoSrcA       = "<%= @video_link_a %>";
+var videoSrcB       = "<%= @video_link_b %>";
 
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
@@ -14,7 +17,13 @@ ws.onmessage = function(message) {
   } else if (data.decided) {
     // TODO: split js files: one for movie, one for app
     if (video) {
-      videoSrc = video.currentSrc.slice(0,-4).concat(data.decided).concat('.mp4');
+      // Only Testing
+      if (data.decided == 'A') {
+        videoSrc = videoSrcA;
+      } else {
+        videoSrc = videoSrcB;
+      }
+      // videoSrc = video.currentSrc.slice(0,-4).concat(data.decided).concat('.mp4');
     }
   }
 };
