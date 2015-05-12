@@ -1,5 +1,5 @@
-require './app'
-require './middlewares/websocket_backend'
+require './app/app'
+require './app/middlewares/websocket_backend'
 
 use ActiveCinema::WebsocketBackend
 

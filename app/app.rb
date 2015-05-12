@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/config_file'
 require 'tilt/erb'
+require 'slim'
 
 module ActiveCinema
   class App < Sinatra::Base
@@ -8,22 +9,22 @@ module ActiveCinema
     config_file './config/config.yml'
 
     get "/" do
-      erb :"index.html"
+      slim :index
     end
 
-    get "/assets/js/application.js" do
+    get "/js/application.js" do
       content_type :js
       @scheme = ENV['RACK_ENV'] == "production" ? "wss://" : "ws://"
       erb :"application.js"
     end
 
-    get "/app" do
-      erb :"app.html"
+    get "/voting" do
+      slim :voting
     end
 
     get "/movie" do
       @video_link = settings.video_url["test_03"]
-      erb :"movie.html"
+      slim :movie
     end
   end
 end
