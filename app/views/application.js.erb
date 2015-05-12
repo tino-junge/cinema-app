@@ -60,8 +60,8 @@ function showDecision() {
 
 function handleDecision(e) {
   ws.send(JSON.stringify({ decided: e }));
-  $("#decision-panel").hide();
-  $("#waiting-panel").show();
+  $("#decision-panel").delay( 500 ).fadeOut( 500 );
+  $("#waiting-panel").delay( 1000 ).fadeIn( 500 );
 };
 
 $(document).ready(function() {
