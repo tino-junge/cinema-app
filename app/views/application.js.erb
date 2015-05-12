@@ -13,7 +13,7 @@ ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
 
   if (data.decision == 'active') {
-    $("#decision-panel").html("<b> Was soll ich machen? </b> <p> <button id='A'> A: Milch holen </button> </p> <p> <button id='B'> B: Nichts tun </button> </p>");
+    showDecision();
   } else if (data.decided) {
     // TODO: split js files: one for movie, one for app
     if (video) {
@@ -53,10 +53,15 @@ $("#video-stream").on("ended", function() {
   }
 });
 
+function showDecision() {
+  $("#waiting-panel").hide();
+  $("#decision-panel").show();
+}
+
 function handleDecision(e) {
-  var decision = e.target;
-  ws.send(JSON.stringify({ decided: decision.id }));
-  $("#decision-panel").html('Waiting for next decision ...');
+  ws.send(JSON.stringify({ decided: e }));
+  $("#decision-panel").hide();
+  $("#waiting-panel").show();
 };
 
 $(document).ready(function() {
