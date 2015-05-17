@@ -25,9 +25,12 @@ module ActiveCinema
           p [:message, event.data]
           json = JSON.parse(event.data)
           if json['decided']
-            @votes[json['decided']] +=1 
+            @votes[json['decided']] += 1
             p [@votes]
-            @clients.each { |client| client.send(JSON.generate({votes: @votes})) }
+            @clients.each { |client| client.send(JSON.generate(votes: @votes)) }
+          elsif json['decision']
+            @votes = Hash.new(0)
+            @clients.each { |client| client.send(event.data) }
           else
             @clients.each { |client| client.send(event.data) }
           end
