@@ -1,11 +1,5 @@
 module ActiveCinema
   class App < Sinatra::Application
-
-    video_a = Video.new('test03A', settings.video_url['test_03a'], [])
-    video_b = Video.new('test03B', settings.video_url['test_03b'], [])
-    video = Video.new('test03', settings.video_url['test_03'], [video_a, video_b])
-    @video = video
-
     get "/" do
       slim :index
     end
@@ -14,8 +8,8 @@ module ActiveCinema
       content_type :js
       @scheme = ENV['RACK_ENV'] == "production" ? "wss://" : "ws://"
       # Only Testing
-      # @video_link_a = settings.video_url["test_03a"]
-      # @video_link_b = settings.video_url["test_03b"]
+      @video_link_a = settings.video.sequels[0].stream
+      @video_link_b = settings.video.sequels[1].stream
       erb :"application.js"
     end
 
@@ -24,8 +18,7 @@ module ActiveCinema
     end
 
     get "/movie" do
-      # @video_link = settings.video_url["test_03"]
-      p @video
+      @video = settings.video
       slim :movie
     end
   end

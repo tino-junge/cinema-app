@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/config_file'
 require 'tilt/erb'
 require 'slim'
+require 'pry'
 
 module ActiveCinema
   class App < Sinatra::Application
