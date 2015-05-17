@@ -2,6 +2,7 @@ require 'faye/websocket'
 require 'thread'
 require 'json'
 require 'erb'
+require 'pry'
 
 module ActiveCinema
   class WebsocketBackend
