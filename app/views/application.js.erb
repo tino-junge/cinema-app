@@ -11,19 +11,18 @@ var videoSrcB       = "<%= @video_link_b %>";
 
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
-
+  console.log(data)
   if (data.decision == 'active') {
     showDecision();
-  } else if (data.decided) {
+  } else if (data.votes) {
     // TODO: split js files: one for movie, one for app
     if (video) {
       // Only Testing
-      if (data.decided == 'A') {
+      if (data.votes['A'] >= data.votes['B']) {
         videoSrc = videoSrcA;
       } else {
         videoSrc = videoSrcB;
       }
-      // videoSrc = video.currentSrc.slice(0,-4).concat(data.decided).concat('.mp4');
     }
   }
 };

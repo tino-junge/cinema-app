@@ -10,6 +10,7 @@ module ActiveCinema
     def initialize(app)
       @app     = app
       @clients = []
+      @votes   = Hash.new(0)
     end
 
     def call(env)
@@ -22,7 +23,14 @@ module ActiveCinema
 
         ws.on :message do |event|
           p [:message, event.data]
-          @clients.each { |client| client.send(event.data) }
+          json = JSON.parse(event.data)
+          if json['decided']
+            @votes[json['decided']] +=1 
+            p [@votes]
+            @clients.each { |client| client.send(JSON.generate({votes: @votes})) }
+          else
+            @clients.each { |client| client.send(event.data) }
+          end
         end
 
         ws.on :close do |event|
