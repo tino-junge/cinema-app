@@ -1,0 +1,37 @@
+var video           = document.getElementById("video-stream");
+var decisionTime    = 20;
+var decicsionActive = false;
+
+ws.onmessage = function(message) {
+  var data = JSON.parse(message.data);
+  console.log(data)
+  if (data.video) {
+    var source = document.querySelectorAll("#video-player video source");
+    source[0].src = data.video;
+    video.load();
+    video.play();
+    $("#decision-logo ").hide();
+  } else if (data.the_end) {
+    $("#decision-logo").html('The End');
+    $("#decision-logo").fadeIn( 3000 );
+  }
+};
+
+$("#video-stream").on("timeupdate", function() {
+    // TODO: Just calculate that once
+    var decicsionTime = this.duration - decisionTime;
+
+    if (this.currentTime > decicsionTime && decicsionActive == false) {
+      $("#decision-logo").fadeIn( 3000 );
+      ws.send(JSON.stringify({ decision: 'active' }));
+      decicsionActive = true;
+    }
+});
+
+$("#video-stream").on("ended", function() {
+  ws.send(JSON.stringify({ video: 'ended' }));
+});
+
+$(document).ready(function() {
+  $("#decision-logo ").hide();
+});

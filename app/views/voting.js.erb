@@ -1,0 +1,24 @@
+ws.onmessage = function(message) {
+  var data = JSON.parse(message.data);
+  console.log(data)
+  if (data.decision == 'active') {
+    showDecision();
+  } else if (data.video || data.the_end) {
+    hideDecision();
+  }
+};
+
+function showDecision() {
+  $("#waiting-panel").hide();
+  $("#decision-panel").show();
+}
+
+function hideDecision() {
+  $("#decision-panel").delay( 500 ).fadeOut( 500 );
+  $("#waiting-panel").delay( 1000 ).fadeIn( 500 );
+}
+
+function handleDecision(e) {
+  ws.send(JSON.stringify({ decided: e }));
+  hideDecision();
+};
