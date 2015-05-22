@@ -10,6 +10,7 @@ module ActiveCinema
     end
 
     get "/voting" do
+      @video = ActiveCinema.the_video
       slim :voting
     end
 

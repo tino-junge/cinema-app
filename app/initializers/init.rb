@@ -8,10 +8,15 @@ module ActiveCinema
   end
 
   class App < Sinatra::Application
-    video_a = Video.new('test03A', settings.video_url['test_03a'], [])
-    video_b = Video.new('test03B', settings.video_url['test_03b'], [])
-    video = Video.new('test03', settings.video_url['test_03'], [video_a, video_b])
+    video_3a = Video.new('V03a', settings.video_url['V03a'])
+    video_3b = Video.new('V03b', settings.video_url['V03b'])
+    video_3 = Video.new(
+      'V03',
+      settings.video_url['V03'],
+      [video_3a, video_3b],
+      settings.question['Q03'],
+      [settings.answer['A03a'], settings.answer['A03b']])
 
-    ActiveCinema.start_with(video)
+    ActiveCinema.start_with(video_3)
   end
 end

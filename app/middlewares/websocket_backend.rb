@@ -17,7 +17,7 @@ module ActiveCinema
     def call(env)
       if Faye::WebSocket.websocket?(env)
         ws = Faye::WebSocket.new(env, nil, ping: KEEPALIVE_TIME)
-        @video   = ActiveCinema.the_video # Reset to first video on page reload
+        @video = ActiveCinema.the_video # Reset to first video on page reload
 
         ws.on :open do
           p [:open, ws.object_id]
@@ -32,12 +32,15 @@ module ActiveCinema
           elsif json['decision']
             @clients.each { |client| client.send(event.data) }
           elsif json['video'] && !@votes.nil? && !@votes.empty?
+            # TODO: allow dynamic size of votes, e.g. for 3 answers
             @video = if @votes['A'] >= @votes['B']
                        @video.sequels[0]
                      else
                        @video.sequels[1]
                      end
+            # TODO: Send video to movie clients
             @clients.each { |client| client.send(JSON.generate(video: @video.stream)) }
+            # TODO: Send new question and answers to voting clients
             @votes = Hash.new(0)
           else
             @clients.each { |client| client.send(JSON.generate(the_end: true)) }

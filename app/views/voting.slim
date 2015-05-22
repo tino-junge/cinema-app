@@ -11,13 +11,13 @@ meta content="width=device-width, initial-scale=1.0" name="viewport"
         .timer.voting-timer
           .mask
       #question
-  			p Was soll ich machen?
+  			p= @video.question
   	    	p
   		    	button.btn.btn-warning.btn-block.btn-lg onclick="handleDecision('A')"
-  	    			'A: Milch holen
+  	    			= @video.answers[0]
   	    	p
   	    		button.btn.btn-warning.btn-block.btn-lg onclick="handleDecision('B')"
-  	    			'B: Nichts tun
+  	    			= @video.answers[1]
 script src="js/jquery-2.0.3.min.js" type="text/javascript" 
 script src="js/application.js" type="text/javascript" 
 script src="js/voting.js" type="text/javascript"

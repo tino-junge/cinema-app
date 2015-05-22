@@ -1,11 +1,16 @@
 development:
   video_url:
-    test_03: "videos/Test_03.mp4"
-    test_03a: "videos/Test_03a.mp4"
-    test_03b: "videos/Test_03b.mp4"
+    V03: 'videos/03_low.mp4'
+    V03a: 'videos/03a_low.mp4'
+    V03b: 'videos/03b_low.mp4'
+  question:
+    Q03: 'Was soll ich machen?'
+  answer:
+    A03a: 'A: Milch holen'
+    A03b: 'B: Nichts tun'
 
 production:
   video_url:
-    test_03: "https://owncloud.hpi.de/public.php?service=files&t=d039b24415d22e191b6861abdad69ff8&download"
-    test_03a: "https://owncloud.hpi.de/public.php?service=files&t=656deaceb5973b366e3a912fd74dab75&download"
-    test_03b: "https://owncloud.hpi.de/public.php?service=files&t=5c32d5a4b51637021bd363f870553a7a&download"
+    V03: "https://owncloud.hpi.de/public.php?service=files&t=d039b24415d22e191b6861abdad69ff8&download"
+    V03a: "https://owncloud.hpi.de/public.php?service=files&t=656deaceb5973b366e3a912fd74dab75&download"
+    V03b: "https://owncloud.hpi.de/public.php?service=files&t=5c32d5a4b51637021bd363f870553a7a&download"
