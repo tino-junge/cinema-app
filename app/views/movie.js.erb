@@ -16,6 +16,19 @@ ws.onmessage = function(message) {
     $("#decision-logo").html('The End');
     $("#decision-logo").fadeIn( 3000 );
   }
+  // DEBUG
+  if (data.votes) {
+    var votes = JSON.parse(data.votes);
+    if (!jQuery.isEmptyObject(votes)) {
+      $("#decision-result").html('');
+      for (var i = 0; i < Object.keys(votes).length; i++) {
+        $("#decision-result").append(
+          "<div> Decision "+i+" : "+votes[i]+" votes</div>");
+      }
+      $("#decision-result").fadeIn( 1000 );
+      $("#decision-result").fadeOut( 10000 );
+    }
+  };
 };
 
 $("#video-stream").on("timeupdate", function() {

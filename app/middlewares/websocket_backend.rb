@@ -42,12 +42,7 @@ module ActiveCinema
           elsif json['video'] == 'ended'
             p [:votes, @votes]
             if !@votes.nil? && !@votes.empty?
-              # TODO: allow dynamic size of votes, e.g. for 3 answers
-              @video = if @votes[0] >= @votes[1]
-                         @video.sequels[0]
-                       else
-                         @video.sequels[1]
-                       end
+              @video = @video.sequels[@votes.max_by { |_, v| v }.first]
               send_next_video
               @votes = Hash.new(0)
             elsif @video.sequels
@@ -95,7 +90,7 @@ module ActiveCinema
     end
 
     def send_next_video
-      @movie_clients.each { |client| client.send(JSON.generate(video: @video.stream, question: @video.question)) }
+      @movie_clients.each { |client| client.send(JSON.generate(video: @video.stream, question: @video.question, votes: JSON.generate(@votes))) }
       @voting_clients.each { |client| client.send(JSON.generate(question: @video.question, answers: @video.answers)) }
     end
 

@@ -20,6 +20,14 @@ body {
   color: white;
 }
 
+#decision-result {
+  position: absolute;
+  right: 1%;
+  top: 15%;
+  font-size: 20px;
+  color: white;
+}
+
 #answers button {
   height: 100px;
   width: 100%;
