@@ -1,3 +1,3 @@
 var scheme          = "<%= @scheme %>";
-var uri             = scheme + window.document.location.host + "/";
+var uri             = scheme + window.document.location.host + window.document.location.pathname;
 var ws              = new WebSocket(uri);

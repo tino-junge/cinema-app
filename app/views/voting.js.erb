@@ -3,7 +3,16 @@ ws.onmessage = function(message) {
   console.log(data)
   if (data.decision == 'active') {
     showDecision();
-  } else if (data.video || data.the_end) {
+  } else if (data.question && data.answers) {
+    hideDecision();
+    $("#question").html(data.question);
+    $("#answers").html('');
+    for (var i = 0; i < data.answers.length; i++) {
+      $("#answers").append(
+        "<button onclick='handleDecision("+i+")'>"+
+        data.answers[i]+"</button>");
+    }
+  } else {
     hideDecision();
   }
 };

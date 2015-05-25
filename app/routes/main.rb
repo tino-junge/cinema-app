@@ -1,6 +1,7 @@
 module ActiveCinema
   class App < Sinatra::Application
     get "/" do
+      # TODO if smartphone, redirect to /voting
       slim :index
     end
 

@@ -20,9 +20,15 @@ body {
   color: white;
 }
 
-#decision-panel button {
+#answers button {
   height: 100px;
   width: 100%;
+  font-size: 18px;
+  border-radius: 6px;
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+  margin-bottom: 5px;
 }
 
 /* Decision Timer Animation */
@@ -41,6 +47,7 @@ body {
   float: right;
   height: 30px;
   width: 30px;
+  margin-top: 7px;
 }
 .mask {
   border-radius: 100% 0 0 100% / 50% 0 0 50%;

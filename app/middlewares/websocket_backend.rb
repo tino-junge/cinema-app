@@ -10,7 +10,8 @@ module ActiveCinema
 
     def initialize(app)
       @app     = app
-      @clients = []
+      @voting_clients = []
+      @movie_clients = []
       @votes   = Hash.new(0)
     end
 
@@ -21,7 +22,14 @@ module ActiveCinema
 
         ws.on :open do
           p [:open, ws.object_id]
-          @clients << ws
+          case ws.url.split('/').last
+          when 'voting'
+            @voting_clients << ws
+          when 'movie'
+            @movie_clients << ws
+          else
+            add_all(ws)
+          end
         end
 
         ws.on :message do |event|
@@ -29,27 +37,34 @@ module ActiveCinema
           json = JSON.parse(event.data)
           if json['decided']
             @votes[json['decided']] += 1
-          elsif json['decision']
-            @clients.each { |client| client.send(event.data) }
-          elsif json['video'] && !@votes.nil? && !@votes.empty?
-            # TODO: allow dynamic size of votes, e.g. for 3 answers
-            @video = if @votes['A'] >= @votes['B']
-                       @video.sequels[0]
-                     else
-                       @video.sequels[1]
-                     end
-            # TODO: Send video to movie clients
-            @clients.each { |client| client.send(JSON.generate(video: @video.stream)) }
-            # TODO: Send new question and answers to voting clients
-            @votes = Hash.new(0)
+          elsif json['decision'] == 'active'
+            send_all(event.data)
+          elsif json['video'] == 'ended'
+            p [:votes, @votes]
+            if !@votes.nil? && !@votes.empty?
+              # TODO: allow dynamic size of votes, e.g. for 3 answers
+              @video = if @votes[0] >= @votes[1]
+                         @video.sequels[0]
+                       else
+                         @video.sequels[1]
+                       end
+              send_next_video
+              @votes = Hash.new(0)
+            elsif @video.sequels
+              @video = @video.sequels[0]
+              send_next_video
+            else
+              the_end
+            end
           else
-            @clients.each { |client| client.send(JSON.generate(the_end: true)) }
+            the_end
           end
         end
 
         ws.on :close do |event|
           p [:close, ws.object_id, event.code, event.reason]
-          @clients.delete(ws)
+          @movie_clients.delete(ws) if @movie_clients.include?(ws)
+          @voting_clients.delete(ws) if @voting_clients.include?(ws)
           ws = nil
         end
 
@@ -67,6 +82,25 @@ module ActiveCinema
       json = JSON.parse(message)
       json.each { |key, value| json[key] = ERB::Util.html_escape(value) }
       JSON.generate(json)
+    end
+
+    def add_all(ws)
+      @movie_clients << ws
+      @voting_clients << ws
+    end
+
+    def send_all(data)
+      @voting_clients.each { |client| client.send(data) }
+      @movie_clients.each { |client| client.send(data) }
+    end
+
+    def send_next_video
+      @movie_clients.each { |client| client.send(JSON.generate(video: @video.stream, question: @video.question)) }
+      @voting_clients.each { |client| client.send(JSON.generate(question: @video.question, answers: @video.answers)) }
+    end
+
+    def the_end
+      send_all(JSON.generate(the_end: true))
     end
   end
 end

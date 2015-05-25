@@ -3,11 +3,19 @@ development:
     V03: 'videos/03_low.mp4'
     V03a: 'videos/03a_low.mp4'
     V03b: 'videos/03b_low.mp4'
+    V06: 'videos/06_low.mp4'
+    V06a: 'videos/06a_low.mp4'
+    V06b: 'videos/06b_low.mp4'
+    V06c: 'videos/06c_low.mp4'
   question:
     Q03: 'Was soll ich machen?'
+    Q06: 'Was wäre sinnvoll?'
   answer:
     A03a: 'A: Milch holen'
     A03b: 'B: Nichts tun'
+    A06a: 'A: Neue Batterien in die Hörgeräte einsetzen'
+    A06b: 'B: Badezimmerschlüssel sichern'
+    A06c: 'C: Nackt tanzen'
 
 production:
   video_url:

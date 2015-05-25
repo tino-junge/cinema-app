@@ -10,14 +10,12 @@ meta content="width=device-width, initial-scale=1.0" name="viewport"
       #countdown
         .timer.voting-timer
           .mask
-      #question
-  			p= @video.question
-  	    	p
-  		    	button.btn.btn-warning.btn-block.btn-lg onclick="handleDecision('A')"
-  	    			= @video.answers[0]
-  	    	p
-  	    		button.btn.btn-warning.btn-block.btn-lg onclick="handleDecision('B')"
-  	    			= @video.answers[1]
+      #question= @video.question
+      #answers
+	    	button onclick="handleDecision(0)"
+    			= @video.answers[0]
+    		button onclick="handleDecision(1)"
+	    		= @video.answers[1]
 script src="js/jquery-2.0.3.min.js" type="text/javascript" 
 script src="js/application.js" type="text/javascript" 
 script src="js/voting.js" type="text/javascript"

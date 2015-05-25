@@ -11,6 +11,7 @@ ws.onmessage = function(message) {
     video.load();
     video.play();
     $("#decision-logo ").hide();
+    if (data.question != null) { decicsionActive = false; }
   } else if (data.the_end) {
     $("#decision-logo").html('The End');
     $("#decision-logo").fadeIn( 3000 );
