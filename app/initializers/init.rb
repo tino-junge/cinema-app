@@ -8,9 +8,31 @@ module ActiveCinema
   end
 
   class App < Sinatra::Application
-    video_6a = Video.new('V06a', settings.video_url['V06a'])
-    video_6b = Video.new('V06b', settings.video_url['V06b'])
-    video_6c = Video.new('V06c', settings.video_url['V06c'])
+    video_11a = Video.new('V11a', settings.video_url['V11a'])
+    video_11b = Video.new('V11b', settings.video_url['V11b'])
+    video_10b = Video.new('V10b', settings.video_url['V10b'], [video_11b])
+    video_10a3 = Video.new('V10a3', settings.video_url['V10a3'], [video_11a])
+    video_10a2 = Video.new(
+      'V10a2',
+      settings.video_url['V10a2'],
+      [video_10a3, video_11b],
+      settings.question['Q10'],
+      [settings.answer['A10a'], settings.answer['A10b']])
+    video_10a1 = Video.new(
+      'V10a1',
+      settings.video_url['V10a1'],
+      [video_10a2, video_10b],
+      settings.question['Q10'],
+      [settings.answer['A10a'], settings.answer['A10b']])
+    video_10 = Video.new(
+      'V10',
+      settings.video_url['V10'],
+      [video_10a1, video_10b],
+      settings.question['Q10'],
+      [settings.answer['A10a'], settings.answer['A10b']])
+    video_6a = Video.new('V06a', settings.video_url['V06a'], [video_10])
+    video_6b = Video.new('V06b', settings.video_url['V06b'], [video_10])
+    video_6c = Video.new('V06c', settings.video_url['V06c'], [video_10])
     video_6 = Video.new(
       'V06',
       settings.video_url['V06'],

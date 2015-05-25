@@ -18,13 +18,14 @@ ws.onmessage = function(message) {
   }
   // DEBUG
   if (data.votes) {
+    var map = {0: 'A', 1: 'B', 2: 'C'}
     var votes = JSON.parse(data.votes);
     if (!jQuery.isEmptyObject(votes)) {
       $("#decision-result").html('');
-      for (var i = 0; i < Object.keys(votes).length; i++) {
+      jQuery.each(votes, function(i, val) {
         $("#decision-result").append(
-          "<div> Decision "+i+" : "+votes[i]+" votes</div>");
-      }
+          "<div> Decision "+map[i]+" : "+val+" votes</div>");
+      });
       $("#decision-result").fadeIn( 1000 );
       $("#decision-result").fadeOut( 10000 );
     }

@@ -1,21 +1,31 @@
 development:
   video_url:
-    V03: 'videos/03_low.mp4'
-    V03a: 'videos/03a_low.mp4'
-    V03b: 'videos/03b_low.mp4'
-    V06: 'videos/06_low.mp4'
-    V06a: 'videos/06a_low.mp4'
-    V06b: 'videos/06b_low.mp4'
-    V06c: 'videos/06c_low.mp4'
+    V03:    'videos/03_low.mp4'
+    V03a:   'videos/03a_low.mp4'
+    V03b:   'videos/03b_low.mp4'
+    V06:    'videos/06_low.mp4'
+    V06a:   'videos/06a_low.mp4'
+    V06b:   'videos/06b_low.mp4'
+    V06c:   'videos/06c_low.mp4'
+    V10:    'videos/10_low.mp4'
+    V10a1:  'videos/10a1_low.mp4'
+    V10a2:  'videos/10a2_low.mp4'
+    V10a3:  'videos/10a3_low.mp4'
+    V10b:   'videos/10b_low.mp4'
+    V11a:   'videos/11a_low.mp4'
+    V11bE:  'videos/11bE_low.mp4'
   question:
     Q03: 'Was soll ich machen?'
     Q06: 'Was wäre sinnvoll?'
+    Q10: 'Was nun?'
   answer:
     A03a: 'A: Milch holen'
     A03b: 'B: Nichts tun'
     A06a: 'A: Neue Batterien in die Hörgeräte einsetzen'
     A06b: 'B: Badezimmerschlüssel sichern'
     A06c: 'C: Nackt tanzen'
+    A10a: 'A: Aufstehen und weitermachen'
+    A10b: 'B: Aufgeben'
 
 production:
   video_url:
