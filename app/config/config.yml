@@ -1,4 +1,34 @@
+production: &common_settings
+  video_url:
+    V03:    "https://owncloud.hpi.de/public.php?service=files&t=1b5800dfefbd10f12180bfbdfb1c45b7&download"
+    V03a:   "https://owncloud.hpi.de/public.php?service=files&t=cae4bd533e7b246ac09b170a187c7f9f&download"
+    V03b:   "https://owncloud.hpi.de/public.php?service=files&t=26d02a9f032a39288dd97469bf68e459&download"
+    V06:    "https://owncloud.hpi.de/public.php?service=files&t=5f4dbaa106b4c91df215c34c4a730c57&download"
+    V06a:   "https://owncloud.hpi.de/public.php?service=files&t=0c58b2d4b70d440aed26505f78bfd3fa&download"
+    V06b:   "https://owncloud.hpi.de/public.php?service=files&t=b3adb65c32e0f952aff9ab3f2b051314&download"
+    V06c:   "https://owncloud.hpi.de/public.php?service=files&t=8140116d3460a18b12388c971a2e4ebc&download"
+    V10:    "https://owncloud.hpi.de/public.php?service=files&t=1278e783a9bc4317a86acaa817be323c&download"
+    V10a1:  "https://owncloud.hpi.de/public.php?service=files&t=49cc6582609b5593eeeff8c5c5eabbd6&download"
+    V10a2:  "https://owncloud.hpi.de/public.php?service=files&t=101af1ea05fd1cc964ee0b3e325e2e17&download"
+    V10a3:  "https://owncloud.hpi.de/public.php?service=files&t=5244b79b73262eb3380d72ab4e172d1d&download"
+    V10b:   "https://owncloud.hpi.de/public.php?service=files&t=d60ba5bdfb5e374d50a1a01c0595f2be&download"
+    V11a:   "https://owncloud.hpi.de/public.php?service=files&t=2ee41348f466573248ccb46eacc1920a&download"
+    V11b:   "https://owncloud.hpi.de/public.php?service=files&t=a9ad4344210917a69f87db86c2690de1&download"
+  question:
+    Q03: 'Was soll ich machen?'
+    Q06: 'Was wäre sinnvoll?'
+    Q10: 'Was nun?'
+  answer:
+    A03a: 'A: Milch holen'
+    A03b: 'B: Nichts tun'
+    A06a: 'A: Neue Batterien in die Hörgeräte einsetzen'
+    A06b: 'B: Badezimmerschlüssel sichern'
+    A06c: 'C: Nackt tanzen'
+    A10a: 'A: Aufstehen und weitermachen'
+    A10b: 'B: Aufgeben'
+
 development:
+  <<: *common_settings
   video_url:
     V03:    'videos/03_low.mp4'
     V03a:   'videos/03a_low.mp4'
@@ -13,22 +43,4 @@ development:
     V10a3:  'videos/10a3_low.mp4'
     V10b:   'videos/10b_low.mp4'
     V11a:   'videos/11a_low.mp4'
-    V11bE:  'videos/11bE_low.mp4'
-  question:
-    Q03: 'Was soll ich machen?'
-    Q06: 'Was wäre sinnvoll?'
-    Q10: 'Was nun?'
-  answer:
-    A03a: 'A: Milch holen'
-    A03b: 'B: Nichts tun'
-    A06a: 'A: Neue Batterien in die Hörgeräte einsetzen'
-    A06b: 'B: Badezimmerschlüssel sichern'
-    A06c: 'C: Nackt tanzen'
-    A10a: 'A: Aufstehen und weitermachen'
-    A10b: 'B: Aufgeben'
-
-production:
-  video_url:
-    V03: "https://owncloud.hpi.de/public.php?service=files&t=d039b24415d22e191b6861abdad69ff8&download"
-    V03a: "https://owncloud.hpi.de/public.php?service=files&t=656deaceb5973b366e3a912fd74dab75&download"
-    V03b: "https://owncloud.hpi.de/public.php?service=files&t=5c32d5a4b51637021bd363f870553a7a&download"
+    V11b:   'videos/11bE_low.mp4'
