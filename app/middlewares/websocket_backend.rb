@@ -90,8 +90,19 @@ module ActiveCinema
     end
 
     def send_next_video
-      @movie_clients.each { |client| client.send(JSON.generate(video: @video.stream, question: @video.question, votes: JSON.generate(@votes))) }
-      @voting_clients.each { |client| client.send(JSON.generate(question: @video.question, answers: @video.answers)) }
+      @movie_clients.each do |client|
+        client.send(
+          JSON.generate(
+            video: @video.stream,
+            question: @video.question))
+      end
+      @voting_clients.each do |client|
+        client.send(
+          JSON.generate(
+            question: @video.question,
+            answers: @video.answers,
+            votes: JSON.generate(@votes)))
+      end
     end
 
     def the_end

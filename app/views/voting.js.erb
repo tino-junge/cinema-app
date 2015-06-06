@@ -15,6 +15,9 @@ ws.onmessage = function(message) {
   } else {
     hideDecision();
   }
+  if (data.votes) {
+    showDecisionResult(data.votes);
+  };
 };
 
 function showDecision() {
@@ -30,4 +33,22 @@ function hideDecision() {
 function handleDecision(e) {
   ws.send(JSON.stringify({ decided: e }));
   hideDecision();
-};
+}
+
+function showDecisionResult(votes) {
+  var map = {0: 'A', 1: 'B', 2: 'C'}
+  var votes = JSON.parse(votes);
+  if (!jQuery.isEmptyObject(votes)) {
+    $("#decision-result").html('<b>Last Voting</b>');
+    jQuery.each(votes, function(i, val) {
+      $("#decision-result").append(
+        "<div> Decision " + map[i] + " : " + val + " votes</div>");
+    });
+    $("#decision-result").fadeIn( 1000 );
+    $("#decision-result").fadeOut( 10000 );
+  }
+}
+
+$(document).ready(function() {
+  $("#decision-result").hide();
+});

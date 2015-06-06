@@ -21,11 +21,7 @@ body {
 }
 
 #decision-result {
-  position: absolute;
-  right: 1%;
-  top: 15%;
-  font-size: 20px;
-  color: white;
+  text-align: center;
 }
 
 #answers button {

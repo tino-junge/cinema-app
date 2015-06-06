@@ -16,20 +16,6 @@ ws.onmessage = function(message) {
     $("#decision-logo").html('The End');
     $("#decision-logo").fadeIn( 3000 );
   }
-  // DEBUG
-  if (data.votes) {
-    var map = {0: 'A', 1: 'B', 2: 'C'}
-    var votes = JSON.parse(data.votes);
-    if (!jQuery.isEmptyObject(votes)) {
-      $("#decision-result").html('');
-      jQuery.each(votes, function(i, val) {
-        $("#decision-result").append(
-          "<div> Decision "+map[i]+" : "+val+" votes</div>");
-      });
-      $("#decision-result").fadeIn( 1000 );
-      $("#decision-result").fadeOut( 10000 );
-    }
-  };
 };
 
 $("#video-stream").on("timeupdate", function() {
@@ -48,5 +34,5 @@ $("#video-stream").on("ended", function() {
 });
 
 $(document).ready(function() {
-  $("#decision-logo ").hide();
+  $("#decision-logo").hide();
 });
