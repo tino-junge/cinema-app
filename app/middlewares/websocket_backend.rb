@@ -18,15 +18,18 @@ module ActiveCinema
     def call(env)
       if Faye::WebSocket.websocket?(env)
         ws = Faye::WebSocket.new(env, nil, ping: KEEPALIVE_TIME)
-        @video = ActiveCinema.the_video # Reset to first video on page reload
+        @video = ActiveCinema.the_video
 
         ws.on :open do
           p [:open, ws.object_id]
           case ws.url.split('/').last
           when 'voting'
+            send_current_video(ws, ActiveCinema.the_video)
             @voting_clients << ws
           when 'movie'
             @movie_clients << ws
+            ActiveCinema.set_current(ActiveCinema.start_video)
+            send_next_video
           else
             add_all(ws)
           end
@@ -39,9 +42,13 @@ module ActiveCinema
             @votes[json['decided']] += 1
           elsif json['decision'] == 'active'
             send_all(event.data)
+          elsif json['video'] == 'start'
+            @video = ActiveCinema.start_video
+            ActiveCinema.set_current(@video)
+            send_next_video
           elsif json['video'] == 'ended'
             p [:votes, @votes]
-            if !@votes.nil? && !@votes.empty?
+            if !@votes.nil? && !@votes.empty? # TODO check for index
               @video = @video.sequels[random_max(@votes)]
               send_next_video(@video, @votes)
               @votes = Hash.new(0)
@@ -51,6 +58,7 @@ module ActiveCinema
             else
               the_end
             end
+            ActiveCinema.set_current(@video) # Set global video to current video
           else
             the_end
           end
@@ -91,6 +99,12 @@ module ActiveCinema
     def send_all(data)
       @voting_clients.each { |client| client.send(data) }
       @movie_clients.each { |client| client.send(data) }
+    end
+
+    def send_current_video(ws, video)
+      ws.send(JSON.generate(
+                question: video.question,
+                answers: video.answers))
     end
 
     def send_next_video(video, votes)
