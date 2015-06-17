@@ -24,12 +24,12 @@ module ActiveCinema
           p [:open, ws.object_id]
           case ws.url.split('/').last
           when 'voting'
-            send_current_video(ws, ActiveCinema.the_video)
+            send_current_video(ws, @video)
             @voting_clients << ws
           when 'movie'
             @movie_clients << ws
             ActiveCinema.set_current(ActiveCinema.start_video)
-            send_next_video
+            send_next_video(@video, @votes)
           else
             add_all(ws)
           end
@@ -45,7 +45,7 @@ module ActiveCinema
           elsif json['video'] == 'start'
             @video = ActiveCinema.start_video
             ActiveCinema.set_current(@video)
-            send_next_video
+            send_next_video(@video, @votes)
           elsif json['video'] == 'ended'
             p [:votes, @votes]
             if !@votes.nil? && !@votes.empty? # TODO check for index
@@ -82,7 +82,7 @@ module ActiveCinema
     private
 
     def random_max(votes)
-      votes.group_by { |_, v| v }.max.last.sample
+      votes.group_by { |_, v| v }.max.last.sample.first
     end
 
     def sanitize(message)
