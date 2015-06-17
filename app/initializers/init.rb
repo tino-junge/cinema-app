@@ -1,13 +1,23 @@
 module ActiveCinema
-  def self.the_video
-    @video ||= nil
+  def self.start_video
+    @start_video ||= nil
   end
 
   def self.start_with(video)
-    @video = video
+    @start_video = video
+    set_current(video)
+  end
+
+  def self.set_current(video)
+    @current_video = video
+  end
+
+  def self.the_video
+    @current_video ||= nil
   end
 
   class App < Sinatra::Application
+    # TODO move to database.yml file
     video_11a = Video.new('V11a', settings.video_url['V11a'])
     video_11b = Video.new('V11b', settings.video_url['V11b'])
     video_10b = Video.new('V10b', settings.video_url['V10b'], [video_11b])
