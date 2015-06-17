@@ -42,12 +42,12 @@ module ActiveCinema
           elsif json['video'] == 'ended'
             p [:votes, @votes]
             if !@votes.nil? && !@votes.empty?
-              @video = @video.sequels[@votes.max_by { |_, v| v }.first]
-              send_next_video
+              @video = @video.sequels[random_max(@votes)]
+              send_next_video(@video, @votes)
               @votes = Hash.new(0)
             elsif @video.sequels
-              @video = @video.sequels[0]
-              send_next_video
+              @video = @video.sequels.sample
+              send_next_video(@video, @votes)
             else
               the_end
             end
@@ -73,6 +73,10 @@ module ActiveCinema
 
     private
 
+    def random_max(votes)
+      votes.group_by { |_, v| v }.max.last.sample
+    end
+
     def sanitize(message)
       json = JSON.parse(message)
       json.each { |key, value| json[key] = ERB::Util.html_escape(value) }
@@ -89,19 +93,19 @@ module ActiveCinema
       @movie_clients.each { |client| client.send(data) }
     end
 
-    def send_next_video
+    def send_next_video(video, votes)
       @movie_clients.each do |client|
         client.send(
           JSON.generate(
-            video: @video.stream,
-            question: @video.question))
+            video: video.stream,
+            question: video.question))
       end
       @voting_clients.each do |client|
         client.send(
           JSON.generate(
-            question: @video.question,
-            answers: @video.answers,
-            votes: JSON.generate(@votes)))
+            question: video.question,
+            answers: video.answers,
+            votes: JSON.generate(votes)))
       end
     end
 
