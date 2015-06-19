@@ -24,7 +24,7 @@ $("#video-stream").on("timeupdate", function() {
 
     if (this.currentTime > decicsionTime && decicsionActive == false) {
       $("#decision-logo").fadeIn( 3000 );
-      ws.send(JSON.stringify({ decision: 'active' }));
+      ws.send(JSON.stringify({ decision_active: true }));
       decicsionActive = true;
     }
 });

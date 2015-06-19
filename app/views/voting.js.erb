@@ -1,10 +1,8 @@
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
   console.log(data)
-  if (data.decision == 'active') {
-    showDecision();
-  } else if (data.question && data.answers) {
-    hideDecision();
+
+  if (data.question && data.answers) {
     $("#question").html(data.question);
     $("#answers").html('');
     for (var i = 0; i < data.answers.length; i++) {
@@ -12,6 +10,9 @@ ws.onmessage = function(message) {
         "<button onclick='handleDecision("+i+")'>"+
         data.answers[i]+"</button>");
     }
+  }
+  if (data.decision_active == true) {
+    showDecision();
   } else {
     hideDecision();
   }

@@ -9,10 +9,11 @@ module ActiveCinema
     KEEPALIVE_TIME = 15 # in seconds
 
     def initialize(app)
-      @app     = app
-      @voting_clients = []
-      @movie_clients = []
-      @votes   = Hash.new(0)
+      @app              = app
+      @voting_clients   = []
+      @movie_clients    = []
+      @votes            = Hash.new(0)
+      @decision_active  = false
     end
 
     def call(env)
@@ -24,11 +25,12 @@ module ActiveCinema
           p [:open, ws.object_id]
           case ws.url.split('/').last
           when 'voting'
-            send_current_video(ws, @video)
+            send_current_video(ws, @video, @decision_active)
             @voting_clients << ws
           when 'movie'
             @movie_clients << ws
-            ActiveCinema.set_current(ActiveCinema.start_video)
+            @decision_active  = false
+            @video = ActiveCinema.set_current(ActiveCinema.start_video)
             send_next_video(@video, @votes)
           else
             add_all(ws)
@@ -40,7 +42,8 @@ module ActiveCinema
           json = JSON.parse(event.data)
           if json['decided']
             @votes[json['decided']] += 1
-          elsif json['decision'] == 'active'
+          elsif json['decision_active'] == true
+            @decision_active = true
             send_all(event.data)
           elsif json['video'] == 'start'
             @video = ActiveCinema.start_video
@@ -58,6 +61,7 @@ module ActiveCinema
             else
               the_end
             end
+            @decision_active = false
             ActiveCinema.set_current(@video) # Set global video to current video
           else
             the_end
@@ -101,10 +105,11 @@ module ActiveCinema
       @movie_clients.each { |client| client.send(data) }
     end
 
-    def send_current_video(ws, video)
+    def send_current_video(ws, video, decision_active)
       ws.send(JSON.generate(
                 question: video.question,
-                answers: video.answers))
+                answers: video.answers,
+                decision_active: decision_active))
     end
 
     def send_next_video(video, votes)
