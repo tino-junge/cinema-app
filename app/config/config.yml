@@ -1,46 +1,79 @@
-production: &common_settings
-  video_url:
-    V03:    "https://owncloud.hpi.de/public.php?service=files&t=1b5800dfefbd10f12180bfbdfb1c45b7&download"
-    V03a:   "https://owncloud.hpi.de/public.php?service=files&t=cae4bd533e7b246ac09b170a187c7f9f&download"
-    V03b:   "https://owncloud.hpi.de/public.php?service=files&t=26d02a9f032a39288dd97469bf68e459&download"
-    V06:    "https://owncloud.hpi.de/public.php?service=files&t=5f4dbaa106b4c91df215c34c4a730c57&download"
-    V06a:   "https://owncloud.hpi.de/public.php?service=files&t=0c58b2d4b70d440aed26505f78bfd3fa&download"
-    V06b:   "https://owncloud.hpi.de/public.php?service=files&t=b3adb65c32e0f952aff9ab3f2b051314&download"
-    V06c:   "https://owncloud.hpi.de/public.php?service=files&t=8140116d3460a18b12388c971a2e4ebc&download"
-    V10:    "https://owncloud.hpi.de/public.php?service=files&t=1278e783a9bc4317a86acaa817be323c&download"
-    V10a1:  "https://owncloud.hpi.de/public.php?service=files&t=49cc6582609b5593eeeff8c5c5eabbd6&download"
-    V10a2:  "https://owncloud.hpi.de/public.php?service=files&t=101af1ea05fd1cc964ee0b3e325e2e17&download"
-    V10a3:  "https://owncloud.hpi.de/public.php?service=files&t=5244b79b73262eb3380d72ab4e172d1d&download"
-    V10b:   "https://owncloud.hpi.de/public.php?service=files&t=d60ba5bdfb5e374d50a1a01c0595f2be&download"
-    V11a:   "https://owncloud.hpi.de/public.php?service=files&t=2ee41348f466573248ccb46eacc1920a&download"
-    V11b:   "https://owncloud.hpi.de/public.php?service=files&t=a9ad4344210917a69f87db86c2690de1&download"
-  question:
-    Q03: 'Was soll ich machen?'
-    Q06: 'Was wäre sinnvoll?'
-    Q10: 'Was nun?'
-  answer:
-    A03a: 'A: Milch holen'
-    A03b: 'B: Nichts tun'
-    A06a: 'A: Neue Batterien in die Hörgeräte einsetzen'
-    A06b: 'B: Badezimmerschlüssel sichern'
-    A06c: 'C: Nackt tanzen'
-    A10a: 'A: Aufstehen und weitermachen'
-    A10b: 'B: Aufgeben'
+development: &common_settings
+  video:
+    v1: &v1_config
+      url: 'videos/iamerror_100_0.mp4'
+      question: 'Was soll ich machen?'
+      answers:
+        a: 'Nichts tun'
+        b: 'Milch holen'
+      sequels:
+        a: 'v2a'
+        b: 'v2b'
+    v2a: &v2a_config
+      url: 'videos/iamerror_200_A.mp4'
+      question: 'Was wäre sinnvoll?'
+      answers:
+        a: 'Neue Batterien in die Hörgeräte einsetzen'
+        b: 'Badezimmerschlüssel sichern'
+        c: 'Nackt tanzen'
+      sequels:
+        a: 'v3a'
+        b: 'v3b'
+        c: 'v3c'
+    v2b:
+      <<: *v2a_config
+      url: 'videos/iamerror_200_B.mp4'
+    v3a: &v3a_config
+      url: 'videos/iamerror_300_A.mp4'
+      question: 'Was nun?'
+      answers:
+        a: 'Aufstehen und weitermachen'
+        b: 'Aufgeben'
+      sequels:
+        a: 'v4a'
+        b: 'v4b'
+    v3b:
+      <<: *v3a_config
+      url: 'videos/iamerror_300_B.mp4'
+    v3c:
+      <<: *v3a_config
+      url: 'videos/iamerror_300_C.mp4'
+    v4a:
+      url: 'videos/iamerror_400_A.mp4'
+      # question: 'Was nun?'
+      # answers:
+      #   a: 'Aufstehen und weitermachen'
+      #   b: 'Aufgeben'
+      # sequels:
+      #   a: 'v4a'
+      #   b: 'v4b'
+    v4b:
+      url: 'videos/iamerror_400_B.mp4'
+    #TODO ADD all videos here
 
-development:
+
+production:
   <<: *common_settings
-  video_url:
-    V03:    'videos/03_low.mp4'
-    V03a:   'videos/03a_low.mp4'
-    V03b:   'videos/03b_low.mp4'
-    V06:    'videos/06_low.mp4'
-    V06a:   'videos/06a_low.mp4'
-    V06b:   'videos/06b_low.mp4'
-    V06c:   'videos/06c_low.mp4'
-    V10:    'videos/10_low.mp4'
-    V10a1:  'videos/10a1_low.mp4'
-    V10a2:  'videos/10a2_low.mp4'
-    V10a3:  'videos/10a3_low.mp4'
-    V10b:   'videos/10b_low.mp4'
-    V11a:   'videos/11a_low.mp4'
-    V11b:   'videos/11bE_low.mp4'
+  video:
+    v1:
+      <<: *v1_config
+      url: "https://owncloud.hpi.de/public.php?service=files&t=fecc1ce6582127194e8ff94fd5620558&download"
+    v2a:
+      <<: *v2a_config
+      url: "https://owncloud.hpi.de/public.php?service=files&t=fb8110a95c9510dd104de410809dd80e&download"
+    v2b:
+      <<: *v2a_config
+      url: "https://owncloud.hpi.de/public.php?service=files&t=b1aed6d56bc1589ad4e223058d080ad5&download"
+    v3a:
+      <<: *v3a_config
+      url: "https://owncloud.hpi.de/public.php?service=files&t=7441e49bff306e1a712ff4940b841762&download"
+    v3b:
+      <<: *v3a_config
+      url: "https://owncloud.hpi.de/public.php?service=files&t=ba8ac2ed67081ccccd3c894925a7c41b&download"
+    v3c:
+      <<: *v3a_config
+      url: "https://owncloud.hpi.de/public.php?service=files&t=dad2a584113e076cca514bf9a0bce53e&download"
+    v4a:
+      url: "https://owncloud.hpi.de/public.php?service=files&t=542c55aef548b6f6665118c1bdd693e5&download"
+    v4b:
+      url: "https://owncloud.hpi.de/public.php?service=files&t=e57f19110bdfb64be12385ca6b09d100&download"

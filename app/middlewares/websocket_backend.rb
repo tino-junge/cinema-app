@@ -31,7 +31,8 @@ module ActiveCinema
             @movie_clients << ws
             @decision_active  = false
             @video = ActiveCinema.set_current(ActiveCinema.start_video)
-            send_next_video(@video, @votes)
+            @votes = init_votes(@video)
+            send_next_video(@video, {})
           else
             add_all(ws)
           end
@@ -48,16 +49,18 @@ module ActiveCinema
           elsif json['video'] == 'start'
             @video = ActiveCinema.start_video
             ActiveCinema.set_current(@video)
-            send_next_video(@video, @votes)
+            @votes = init_votes(@video)
+            send_next_video(@video, {})
           elsif json['video'] == 'ended'
             p [:votes, @votes]
             if !@votes.nil? && !@votes.empty? # TODO check for index
+              voting = prepare_votes(@video, @votes)
               @video = @video.sequels[random_max(@votes)]
-              send_next_video(@video, @votes)
-              @votes = Hash.new(0)
-            elsif @video.sequels
+              send_next_video(@video, voting)
+              @votes = init_votes(@video)
+            elsif !@video.sequels.empty?
               @video = @video.sequels.sample
-              send_next_video(@video, @votes)
+              send_next_video(@video, {})
             else
               the_end
             end
@@ -87,6 +90,21 @@ module ActiveCinema
 
     def random_max(votes)
       votes.group_by { |_, v| v }.max.last.sample.first
+    end
+
+    def init_votes(video)
+      if video.answers.nil? || video.answers.empty?
+        votes = Hash.new(0)
+      else
+        votes = Hash[video.answers.keys.product([0])]
+      end
+      votes
+    end
+
+    def prepare_votes(video, votes)
+      voting = {}
+      votes.each { |k, v| voting[video.answers[k]] = v }
+      voting
     end
 
     def sanitize(message)

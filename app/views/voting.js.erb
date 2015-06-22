@@ -5,10 +5,10 @@ ws.onmessage = function(message) {
   if (data.question && data.answers) {
     $("#question").html(data.question);
     $("#answers").html('');
-    for (var i = 0; i < data.answers.length; i++) {
+    for (answer_key in data.answers) {
       $("#answers").append(
-        "<button onclick='handleDecision("+i+")'>"+
-        data.answers[i]+"</button>");
+        "<button onclick='handleDecision(\""+answer_key+"\")'>"+
+        data.answers[answer_key]+"</button>");
     }
   }
   if (data.decision_active == true) {
@@ -37,14 +37,13 @@ function handleDecision(e) {
 }
 
 function showDecisionResult(votes) {
-  var map = {0: 'A', 1: 'B', 2: 'C'}
   var votes = JSON.parse(votes);
   if (!jQuery.isEmptyObject(votes)) {
     $("#decision-result").html('<b>Last Voting</b>');
-    jQuery.each(votes, function(i, val) {
+    for (vote in votes) {
       $("#decision-result").append(
-        "<div> Decision " + map[i] + " : " + val + " votes</div>");
-    });
+        "<div> " + vote + " : " + votes[vote] + " votes </div>");
+    }
     $("#decision-result").fadeIn( 1000 );
     $("#decision-result").fadeOut( 10000 );
   }
