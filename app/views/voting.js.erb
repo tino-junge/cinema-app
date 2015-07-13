@@ -1,6 +1,6 @@
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
-  console.log(data)
+  // console.log(data)
 
   if (data.question && data.answers) {
     $("#question").html(data.question);
@@ -39,10 +39,10 @@ function handleDecision(e) {
 function showDecisionResult(votes) {
   var votes = JSON.parse(votes);
   if (!jQuery.isEmptyObject(votes)) {
-    $("#decision-result").html('<b>Last Voting</b>');
+    $("#decision-result").html('<b>Letzte Abstimmung</b>');
     for (vote in votes) {
       $("#decision-result").append(
-        "<div> " + vote + " : " + votes[vote] + " votes </div>");
+        "<div> " + vote + " : " + votes[vote] + " Stimme(n) </div>");
     }
     $("#decision-result").fadeIn( 1000 );
     $("#decision-result").fadeOut( 10000 );

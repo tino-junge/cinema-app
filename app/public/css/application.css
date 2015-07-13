@@ -1,6 +1,7 @@
 body {
   background: black;
   overflow: hidden;
+  margin-top: 10px;
 }
 
 #video-player {
@@ -60,7 +61,7 @@ body {
   position: absolute;
   top: 0;
   width: 50%;
-  -webkit-animation: mask 20s;
+  -webkit-animation: mask 15s;
   -webkit-transform-origin: 100% 50%;
   -webkit-animation-timing-function: linear;
   -webkit-animation-direction: reverse;

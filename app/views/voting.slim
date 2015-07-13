@@ -4,8 +4,9 @@ link href="css/application.css" media="screen" rel="stylesheet"
 meta content="width=device-width, initial-scale=1.0" name="viewport"
 .container
   .jumbotron
-    #waiting-panel onclick="showDecision()"
-      p Waiting for next decision ...
+    / #waiting-panel onclick="showDecision()"
+    #waiting-panel
+      p Warte auf Entscheidung ...
     #decision-panel hidden=true
       #countdown
         .timer.voting-timer

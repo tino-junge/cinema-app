@@ -53,7 +53,7 @@ module ActiveCinema
             send_next_video(@video, {})
           elsif json['video'] == 'ended'
             p [:votes, @votes]
-            if !@votes.nil? && !@votes.empty? # TODO check for index
+            if !@votes.nil? && !@votes.empty? # TODO: check for index
               voting = prepare_votes(@video, @votes)
               @video = @video.sequels[random_max(@votes)]
               send_next_video(@video, voting)

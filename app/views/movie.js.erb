@@ -1,10 +1,10 @@
 var video           = document.getElementById("video-stream");
-var decisionTime    = 20;
+var decisionTime    = 15;
 var decicsionActive = false;
 
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
-  console.log(data)
+  // console.log(data)
   if (data.video) {
     var source = document.querySelectorAll("#video-player video source");
     source[0].src = data.video;

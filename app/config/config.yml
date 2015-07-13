@@ -1,211 +1,241 @@
-development:
-  video:
-    v1: &v1_config
-      url: 'videos/iamerror_100_0.mp4'
-      question: 'Was soll ich machen?'
-      answers:
-        a: 'Nichts tun'
-        b: 'Milch holen'
-      sequels:
-        a: 'v2a'
-        b: 'v2b'
-    v2a: &v2a_config
-      url: 'videos/iamerror_200_A.mp4'
-      question: 'Was wäre sinnvoll?'
-      answers:
-        a: 'Neue Batterien in die Hörgeräte einsetzen'
-        b: 'Badezimmerschlüssel sichern'
-        c: 'Nackt tanzen'
-      sequels:
-        a: 'v3a'
-        b: 'v3b'
-        c: 'v3c'
-    v2b:
-      <<: *v2a_config
-      url: 'videos/iamerror_200_B.mp4'
-    v3a: &v3a_config
-      url: 'videos/iamerror_300_A.mp4'
-      question: 'Was nun?'
-      answers:
-        a: 'Aufstehen und weitermachen'
-        b: 'Aufgeben'
-      sequels:
-        a: 'v4a'
-        b: 'v4b'
-    v3b:
-      <<: *v3a_config
-      url: 'videos/iamerror_300_B.mp4'
-    v3c:
-      <<: *v3a_config
-      url: 'videos/iamerror_300_C.mp4'
-    v4a: &v4a_config
-      <<: *v3a_config
-      url: 'videos/iamerror_400_A.mp4'
-      sequels:
-        a: 'v5a'
-        b: 'v4b'
-    v4b: &v4b_config
-      url: 'videos/iamerror_400_B.mp4'
-      question: 'Was meinst du?'
-      answers:
-        a: 'Bleiben und mit Elias reden'
-        b: 'Zum Cafe fahren und mit Papa reden'
-      sequels:
-        a: 'v7d'  # TODO decide if correct 'v7c'
-        # b: 'v7d'
-    v5a: &v5a_config
-      <<: *v3a_config
-      url: 'videos/iamerror_500_A.mp4'
-      sequels:
-        a: 'v6a'
-        b: 'v7c' # TODO decide if correct 'v4b'
-    v6a: &v6a_config
-      <<: *v4b_config
-      url: 'videos/iamerror_600_A.mp4'
-      sequels:
-        a: 'v7a'
-        b: 'v7b'
-    v7a: &v7a_config
-      url: 'videos/iamerror_700_A.mp4'
-      question: 'Was soll ich tun?'
-      answers:
-        a: 'Sebastian ignorieren'
-        b: 'Sebastian zur Rede stellen'
-      sequels:
-        a: 'v8a'
-        b: 'v8b'
-    v7b:
-      <<: *v7a_config
-      url: 'videos/iamerror_700_B.mp4'
-    v7c:
-      <<: *v7a_config
-      url: 'videos/iamerror_700_C.mp4'
-    v7d:
-      <<: *v7a_config
-      url: 'videos/iamerror_700_D.mp4'
-    v8a: &v8a_config
-      url: 'videos/iamerror_800_A.mp4'
-      question: 'Was willst du Hanna schreiben?'
-      answers:
-        a: 'Nichts'
-        b: 'Umleitung übers Westufer!'
-        c: 'Umleitung übers Ostufer!'
-      sequels:
-        a: 'v9a'
-        b: 'v9b'
-        c: 'v9c'
-    v8b:
-      <<: *v8a_config
-      url: 'videos/iamerror_800_B.mp4'
-    v9a: &v9a_config
-      url: 'videos/iamerror_900_A.mp4'
-      question: 'Hanna Bescheid geben?'
-      answers:
-        a: 'Mach deinen Schuh zu!'
-        b: 'Hanna weiter fahren lassen'
-      sequels:
-        a: 'v10a'
-        b: 'v10b'
-    v9b:
-      <<: *v9a_config
-      url: 'videos/iamerror_900_B.mp4'
-    v9c:
-      <<: *v9a_config
-      url: 'videos/iamerror_900_C.mp4'
-    v10a: &v10a_config
-      url: 'videos/iamerror_1000_A.mp4'
-      question: 'Mit wem soll ich sprechen?'
-      answers:
-        a: 'Vivi erzählen, was passiert ist'
-        b: 'Sebastian erzählen, was passiert ist'
-      sequels:
-        a: 'v11a'
-        b: 'v11b'
-    v10b: &v10b_config
-      <<: *v10a_config
-      url: 'videos/iamerror_1000_B.mp4'
-      sequels:
-        a: 'v11c'
-        b: 'v11d'
-    v11a:
-      url: 'videos/iamerror_1100_A.mp4'
-    v11b:
-      url: 'videos/iamerror_1100_B.mp4'
-    v11c:
-      url: 'videos/iamerror_1100_C.mp4'
-    v11d:
-      url: 'videos/iamerror_1100_D.mp4'
-
-production:
-  video:
-    v1:
-      <<: *v1_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=fecc1ce6582127194e8ff94fd5620558&download"
-    v2a:
-      <<: *v2a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=fb8110a95c9510dd104de410809dd80e&download"
-    v2b:
-      <<: *v2a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=b1aed6d56bc1589ad4e223058d080ad5&download"
-    v3a:
-      <<: *v3a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=7441e49bff306e1a712ff4940b841762&download"
-    v3b:
-      <<: *v3a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=ba8ac2ed67081ccccd3c894925a7c41b&download"
-    v3c:
-      <<: *v3a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=dad2a584113e076cca514bf9a0bce53e&download"
-    v4a:
-      <<: *v4a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=542c55aef548b6f6665118c1bdd693e5&download"
-    v4b:
-      <<: *v4b_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=e57f19110bdfb64be12385ca6b09d100&download"
-    v5a:
-      <<: *v5a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=045d57afeca0ffc8659bce31604b718f&download"
-    v6a:
-      <<: *v6a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=96b2069235d8f738e1a0319f5460df2c&download"
-    v7a:
-      <<: *v7a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=fad89cdbebba5b394a80f9fe80486639&download"
-    v7b:
-      <<: *v7a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=e5b2db412245801283066a96ec7e3d04&download"
-    v7c:
-      <<: *v7a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=87e395dbb977def5f66899da34d0c29b&download"
-    v7d:
-      <<: *v7a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=e354ab0cf479dc6e2b3e8fdf6c66578f&download"
-    v8a:
-      <<: *v8a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=fc18c63b3f39a66e89aa5ed41fbd7252&download"
-    v8b:
-      <<: *v8a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=0e8c3ee84945bd3870cd3b00a284f032&download"
-    v9a:
-      <<: *v9a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=cd91630e6e65182929c9a66e0945663e&download"
-    v9b:
-      <<: *v9a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=409626011bfbcc659f1d7503165c7299&download"
-    v9c:
-      <<: *v9a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=6bf93564e7f002e1f3458685ab19a0db&download"
-    v10a:
-      <<: *v10a_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=d389fd715f667be14e355102c209fe64&download"
-    v10b:
-      <<: *v10b_config
-      url: "https://owncloud.hpi.de/public.php?service=files&t=0b6197d7aa54ded172c468837fa48a9b&download"
-    v11a:
-      url: "https://owncloud.hpi.de/public.php?service=files&t=3764b3c6e87772a317542ce01f211ee2&download"
-    v11b:
-      url: "https://owncloud.hpi.de/public.php?service=files&t=e49077d22421b62eaf72dba6b6811aed&download"
-    v11c:
-      url: "https://owncloud.hpi.de/public.php?service=files&t=9e370e92c2703e458d6750bc7b48b124&download"
-    v11d:
-      url: "https://owncloud.hpi.de/public.php?service=files&t=56db6be52f1dc2974b0b89e09dea49b7&download"
+remote_url: 'https://owncloud.hpi.de/public.php?service=files&t=871d402ab8391ade2095fe728b15779b&path=%2F&files='
+video:
+  v1:
+    file: 'iamerror_01.mp4'
+    question: 'Wer soll Milch kaufen?'
+    answers:
+      a: 'Hanna'
+      b: 'Sebastian'
+    sequels:
+      a: 'v2'
+      b: 'v3'
+  v2: &v2_config
+    file: 'iamerror_02.mp4'
+    question: 'Was wäre sinnvoll?'
+    answers:
+      a: 'Neue Batterien fürs Hörgerät einsetzen'
+      b: 'Schlüssel fürs Bad suchen'
+      c: 'Nackt tanzen'
+    sequels:
+      a: 'v4'
+      b: 'v5'
+      c: 'v6'
+  v3:
+    <<: *v2_config
+    file: 'iamerror_03.mp4'
+  v4: &v4_config
+    file: 'iamerror_04.mp4'
+    question: 'Was soll Hanna tun?'
+    answers:
+      a: 'Noch ne Runde'
+      b: 'Aufgeben'
+    sequels:
+      a: 'v7'
+      b: 'v10'
+  v5:
+    <<: *v4_config
+    file: 'iamerror_05.mp4'
+  v6:
+    <<: *v4_config
+    file: 'iamerror_06.mp4'
+  v7: &v7_config
+    <<: *v4_config
+    file: 'iamerror_07.mp4'
+    sequels:
+      a: 'v8'
+      b: 'v10'
+  v8: &v8_config
+    <<: *v4_config
+    file: 'iamerror_08.mp4'
+    sequels:
+      a: 'v9'
+      b: 'v11'
+  v9: &v9_config
+    file: 'iamerror_09.mp4'
+    question: 'Was meinst du?'
+    answers:
+      a: 'Bleiben und mit Elias reden'
+      b: 'Zum Cafe fahren und mit Papa reden'
+    sequels:
+      a: 'v12'
+      b: 'v13'
+  v10: &v10_config
+    <<: *v9_config
+    file: 'iamerror_10.mp4'
+    sequels:
+      a: 'v14'
+      b: 'v15'
+  v11:
+    <<: *v10_config
+    file: 'iamerror_11.mp4'
+  v12: &v12_config
+    file: 'iamerror_12.mp4'
+    question: 'Was soll ich tun?'
+    answers:
+      a: 'Sebastian ignorieren'
+      b: 'Sebastian zur Rede stellen'
+    sequels:
+      a: 'v17'
+      b: 'v16'
+  v13:
+    <<: *v12_config
+    file: 'iamerror_13.mp4'
+  v14:
+    <<: *v12_config
+    file: 'iamerror_14.mp4'
+  v15:
+    <<: *v12_config
+    file: 'iamerror_15.mp4'
+  v16: &v16_config
+    file: 'iamerror_16.mp4'
+    question: 'Was willst du Hanna schreiben?'
+    answers:
+      a: 'Hanna selbst herausfinden lassen wie es weitergeht'
+      b: 'Hanna schreiben: Umleitung übers Ostufer!' # Hansagasse
+      c: 'Hanna schreiben: Umleitung über Hansaweg!' # Westufer
+    sequels:
+      a: 'v20'
+      b: 'v19'
+      c: 'v18'
+  v17:
+    <<: *v16_config
+    file: 'iamerror_17.mp4'
+  v18: &v18_config
+    file: 'iamerror_18.mp4'
+    question: 'Hanna Bescheid geben?'
+    answers:
+      a: 'Hanna schreiben: Mach deinen Schuh zu!'
+      b: 'Hanna weiter fahren lassen'
+    sequels:
+      a: 'v21'
+      b: 'v22'
+  v19:
+    <<: *v18_config
+    file: 'iamerror_19.mp4'
+  v20:
+    <<: *v18_config
+    file: 'iamerror_20.mp4'
+  v21: &v21_config
+    file: 'iamerror_21.mp4'
+    question: 'Mit wem soll ich sprechen?'
+    answers:
+      a: 'Mit Vivi sprechen'
+      b: 'Mit Sebastian chatten'
+    sequels:
+      a: 'v23'
+      b: 'v24'
+  v22:
+    <<: *v21_config
+    file: 'iamerror_22.mp4'
+    sequels:
+      a: 'v25'
+      b: 'v26'
+  v23: &v23_config
+    file: 'iamerror_23.mp4'
+    question: 'Was soll ich mit dem Handy machen?'
+    answers:
+      a: 'Handy behalten'
+      b: 'Handy abgeben'
+    sequels:
+      a: 'v29'
+      b: 'v27'
+  v24: &v24_config
+    <<: *v23_config
+    file: 'iamerror_24.mp4'
+    sequels:
+      a: 'v30'
+      b: 'v28'
+  v25: &v25_config
+    <<: *v23_config
+    file: 'iamerror_25.mp4'
+  v26:
+    <<: *v24_config
+    file: 'iamerror_26.mp4'
+  v27:
+    file: 'iamerror_27.mp4' # Ende 1
+  v28:
+    file: 'iamerror_28.mp4' # Ende 1
+  v29: &v29_config
+    file: 'iamerror_29.mp4'
+    question: 'Schreib Hanna:'
+    answers:
+      a: 'Versteck dich!'
+      b: 'Schwindelig?'
+    sequels:
+      a: 'v31'
+      b: 'v32'
+  v30:
+    <<: *v29_config
+    file: 'iamerror_30.mp4'
+  v31: &v31_config
+    file: 'iamerror_31.mp4'
+    question: 'Hast du was mit der Explosion zu tun?'
+    answers:
+      a: 'Ja, ich war da'
+      b: 'Nein, aber ich weiß was'
+      c: 'Ja, ich habe gehört du suchst nach mir' # ich war es
+    sequels:
+      a: 'v33'
+      b: 'v35'
+      c: 'v34'
+  v32:
+    <<: *v31_config
+    file: 'iamerror_32.mp4'
+  v33: &v33_config
+    file: 'iamerror_33.mp4'
+    question: 'Weißt du wer der Täter ist?'
+    answers:
+      a: 'Elias'
+      b: 'Hanna'
+      c: 'Vivi'
+      d: 'Sebastian'
+    sequels:
+      a: 'v39' # Ende 2
+      b: 'v41' # Ende 3.1 TODO: oder 3.2 iamerror_44
+      c: 'v40' # Ende 2
+      d: 'v38' # Ende 2
+  v34:
+    <<: *v33_config
+    file: 'iamerror_34.mp4'
+    question: 'Wer bist du?'
+  v35:
+    file: 'iamerror_35.mp4'
+    question: 'Bilde ich mir das alles nur ein?'
+    answers:
+      a: 'Du verlierst den Verstand'
+      b: 'Nein, der Attentäter verfolgt dich'
+    sequels:
+      a: 'v36'
+      b: 'v37'
+  v36:
+    file: 'iamerror_36.mp4'
+    question: 'Was soll ich tun?'
+    answers:
+      a: 'Hör genau hin!'
+      b: 'Hol dir Hilfe!'
+    sequels:
+      a: 'v43' # Ende 3.1 TODO: oder 3.2 iamerror_46
+      b: 'v42' # Ende 3.1 TODO: oder 3.2 iamerror_45
+  v37:
+    <<: *v33_config
+    file: 'iamerror_37.mp4'
+  v38:
+    file: 'iamerror_38.mp4'
+  v39:
+    file: 'iamerror_39.mp4'
+  v40:
+    file: 'iamerror_40.mp4'
+  v40:
+    file: 'iamerror_40.mp4'
+  v41:
+    file: 'iamerror_41.mp4'
+  v42:
+    file: 'iamerror_42.mp4'
+  v43:
+    file: 'iamerror_43.mp4'
+  v44:
+    file: 'iamerror_44.mp4'
+  v45:
+    file: 'iamerror_45.mp4'
+  v46:
+    file: 'iamerror_46.mp4'

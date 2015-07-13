@@ -19,9 +19,10 @@ module ActiveCinema
   class App < Sinatra::Application
     def self.create_video(id)
       if Video.find_by_name(id).nil?
+        file = settings.video[id]['file']
         Video.new(
           id,
-          settings.video[id]['url'],
+          ENV['RACK_ENV'] == "production" ? settings.remote_url + file + "&download" : "videos/" + file,
           sequels_for(id),
           settings.video[id]['question'],
           settings.video[id]['answers'])
