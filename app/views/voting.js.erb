@@ -7,7 +7,7 @@ ws.onmessage = function(message) {
     $("#answers").html('');
     for (answer_key in data.answers) {
       $("#answers").append(
-        "<button onclick='handleDecision(\""+answer_key+"\")'>"+
+        "<button class='decision-btn' onclick='handleDecision(\""+answer_key+"\")'>"+
         data.answers[answer_key]+"</button>");
     }
   }
@@ -32,6 +32,7 @@ function hideDecision() {
 }
 
 function handleDecision(e) {
+  $(".decision-btn").attr("disabled", "disabled");
   ws.send(JSON.stringify({ decided: e }));
   hideDecision();
 }
