@@ -7,7 +7,7 @@ ws.onmessage = function(message) {
     $("#answers").html('');
     for (answer_key in data.answers) {
       $("#answers").append(
-        "<button class='decision-btn' onclick='handleDecision(\""+answer_key+"\")'>"+
+        "<button id='"+answer_key+"-btn' class='decision-btn' onclick='handleDecision(\""+answer_key+"\")'>"+
         data.answers[answer_key]+"</button>");
     }
   }
@@ -33,6 +33,7 @@ function hideDecision() {
 
 function handleDecision(e) {
   $(".decision-btn").attr("disabled", "disabled");
+  $("#"+e+"-btn").addClass('decided-button');
   ws.send(JSON.stringify({ decided: e }));
   hideDecision();
 }

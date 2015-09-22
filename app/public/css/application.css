@@ -25,6 +25,11 @@ body {
   text-align: center;
 }
 
+.decided-button {
+  color: black !important;
+  font-weight: 800;
+}
+
 #answers button {
   height: 100px;
   width: 100%;
