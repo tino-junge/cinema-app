@@ -11,178 +11,167 @@ video:
       b: 'v3'
   v2: &v2_config
     file: 'iamerror_02.mp4'
-    question: 'Was wäre sinnvoll?'
+    question: 'Was soll Hanna tun?'
     answers:
-      a: 'Neue Batterien fürs Hörgerät einsetzen'
-      b: 'Schlüssel fürs Bad suchen'
-      c: 'Nackt tanzen'
+      a: 'Aufstehen'
+      b: 'Aufgeben'
     sequels:
       a: 'v4'
-      b: 'v5'
-      c: 'v6'
+      b: 'v7'
   v3:
     <<: *v2_config
     file: 'iamerror_03.mp4'
-  v4: &v4_config
+  v4:
+    <<: *v2_config
     file: 'iamerror_04.mp4'
-    question: 'Was soll Hanna tun?'
-    answers:
-      a: 'Noch ne Runde'
-      b: 'Aufgeben'
     sequels:
-      a: 'v7'
-      b: 'v10'
+      a: 'v5'
+      b: 'v7'
   v5:
-    <<: *v4_config
+    <<: *v2_config
     file: 'iamerror_05.mp4'
-  v6:
-    <<: *v4_config
+    sequels:
+      a: 'v6'
+      b: 'v7'
+  v6: &v6_config
     file: 'iamerror_06.mp4'
-  v7: &v7_config
-    <<: *v4_config
-    file: 'iamerror_07.mp4'
+    question: 'Mit wem sprechen?'
+    answers:
+      a: 'Elias'
+      b: 'Papa'
     sequels:
       a: 'v8'
-      b: 'v10'
-  v8: &v8_config
-    <<: *v4_config
-    file: 'iamerror_08.mp4'
+      b: 'v9'
+  v7:
+    <<: *v6_config
+    file: 'iamerror_07.mp4'
     sequels:
-      a: 'v9'
+      a: 'v10'
       b: 'v11'
-  v9: &v9_config
-    file: 'iamerror_09.mp4'
-    question: 'Was meinst du?'
+  v8: &v8_config
+    file: 'iamerror_08.mp4'
+    question: 'Sebastian zur Rede stellen?'
     answers:
-      a: 'Bleiben und mit Elias reden'
-      b: 'Zum Cafe fahren und mit Papa reden'
+      a: 'Ja'
+      b: 'Nein'
     sequels:
       a: 'v12'
       b: 'v13'
-  v10: &v10_config
-    <<: *v9_config
+  v9:
+    <<: *v8_config
+    file: 'iamerror_09.mp4'
+  v10:
+    <<: *v8_config
     file: 'iamerror_10.mp4'
-    sequels:
-      a: 'v14'
-      b: 'v15'
   v11:
-    <<: *v10_config
+    <<: *v8_config
     file: 'iamerror_11.mp4'
   v12: &v12_config
     file: 'iamerror_12.mp4'
-    question: 'Was soll ich tun?'
-    answers:
-      a: 'Sebastian ignorieren'
-      b: 'Sebastian zur Rede stellen'
-    sequels:
-      a: 'v17'
-      b: 'v16'
-  v13:
-    <<: *v12_config
-    file: 'iamerror_13.mp4'
-  v14:
-    <<: *v12_config
-    file: 'iamerror_14.mp4'
-  v15:
-    <<: *v12_config
-    file: 'iamerror_15.mp4'
-  v16: &v16_config
-    file: 'iamerror_16.mp4'
     question: 'Was willst du Hanna schreiben?'
     answers:
       a: 'Hanna selbst herausfinden lassen wie es weitergeht'
-      b: 'Hanna schreiben: Umleitung übers Ostufer!' # Hansagasse
-      c: 'Hanna schreiben: Umleitung über Hansaweg!' # Westufer
+      b: 'Hanna schreiben: Umleitung über Hansaweg!'
+      c: 'Hanna schreiben: Umleitung übers Ostufer!' # Hansagasse
     sequels:
-      a: 'v20'
-      b: 'v19'
-      c: 'v18'
-  v17:
-    <<: *v16_config
-    file: 'iamerror_17.mp4'
-  v18: &v18_config
-    file: 'iamerror_18.mp4'
-    question: 'Hanna Bescheid geben?'
+      a: 'v14'
+      b: 'v15'
+      c: 'v16'
+  v13:
+    <<: *v12_config
+    file: 'iamerror_13.mp4'
+  v14: &v14_config
+    file: 'iamerror_14.mp4'
+    question: 'Dein Schnürsenkel ist offen!'
     answers:
-      a: 'Hanna schreiben: Mach deinen Schuh zu!'
-      b: 'Hanna weiter fahren lassen'
+      a: 'SENDEN'
+      b: 'LÖSCHEN'
+    sequels:
+      a: 'v17'
+      b: 'v18'
+  v15:
+    <<: *v14_config
+    file: 'iamerror_15.mp4'
+  v16:
+    <<: *v14_config
+    file: 'iamerror_16.mp4'
+  v17: &v17_config
+    file: 'iamerror_17.mp4'
+    question: 'Mit wem soll ich sprechen?'
+    answers:
+      a: 'Vivi'
+      b: 'Sebastian'
+    sequels:
+      a: 'v19'
+      b: 'v20'
+  v18:
+    <<: *v17_config
+    file: 'iamerror_18.mp4'
     sequels:
       a: 'v21'
       b: 'v22'
-  v19:
-    <<: *v18_config
+  v19: &v19_config
     file: 'iamerror_19.mp4'
-  v20:
-    <<: *v18_config
-    file: 'iamerror_20.mp4'
-  v21: &v21_config
-    file: 'iamerror_21.mp4'
-    question: 'Mit wem soll ich sprechen?'
+    question: 'Was soll ich mit dem Handy machen?'
     answers:
-      a: 'Mit Vivi sprechen'
-      b: 'Mit Sebastian chatten'
+      a: 'Handy abgeben'
+      b: 'Handy behalten'
     sequels:
       a: 'v23'
       b: 'v24'
-  v22:
-    <<: *v21_config
-    file: 'iamerror_22.mp4'
+  v20:
+    <<: *v19_config
+    file: 'iamerror_20.mp4'
+  v21: &v21_config
+    <<: *v19_config
+    file: 'iamerror_21.mp4'
     sequels:
       a: 'v25'
       b: 'v26'
-  v23: &v23_config
-    file: 'iamerror_23.mp4'
-    question: 'Was soll ich mit dem Handy machen?'
-    answers:
-      a: 'Handy behalten'
-      b: 'Handy abgeben'
-    sequels:
-      a: 'v29'
-      b: 'v27'
+  v22:
+    <<: *v21_config
+    file: 'iamerror_22.mp4'
+  v23:
+    file: 'iamerror_23.mp4' # Ende 1
   v24: &v24_config
-    <<: *v23_config
     file: 'iamerror_24.mp4'
+    question: 'Schreib Hanna:'
+    answers:
+      a: 'Na, etwas schwindelig?'
+      b: 'Versteck dich!'
     sequels:
-      a: 'v30'
+      a: 'v27'
       b: 'v28'
-  v25: &v25_config
-    <<: *v23_config
-    file: 'iamerror_25.mp4'
+  v25:
+    file: 'iamerror_25.mp4' # Ende 1
   v26:
     <<: *v24_config
     file: 'iamerror_26.mp4'
-  v27:
-    file: 'iamerror_27.mp4' # Ende 1
-  v28:
-    file: 'iamerror_28.mp4' # Ende 1
-  v29: &v29_config
-    file: 'iamerror_29.mp4'
-    question: 'Schreib Hanna:'
-    answers:
-      a: 'Versteck dich!'
-      b: 'Schwindelig?'
-    sequels:
-      a: 'v31'
-      b: 'v32'
-  v30:
-    <<: *v29_config
-    file: 'iamerror_30.mp4'
-  v31: &v31_config
-    file: 'iamerror_31.mp4'
+  v27: &v27_config
+    file: 'iamerror_27.mp4'
     question: 'Hast du was mit der Explosion zu tun?'
     answers:
-      a: 'Ja, ich war da'
-      b: 'Nein, aber ich weiß was'
-      c: 'Ja, ich habe gehört du suchst nach mir' # ich war es
+      a: 'Ich weiß was! ;)'
+      b: 'Ich war da.'
+      c: "Ich war's! ;)"
+    sequels:
+      a: 'v29'
+      b: 'v30'
+      c: 'v31'
+  v28:
+    <<: *v27_config
+    file: 'iamerror_28.mp4'
+  v29:
+    file: 'iamerror_29.mp4'
+    question: 'Was weißt du denn?'
+    answers:
+      a: 'Du verlierst den Verstand!'
+      b: 'Der Täter verfolgt dich!'
     sequels:
       a: 'v33'
-      b: 'v35'
-      c: 'v34'
-  v32:
-    <<: *v31_config
-    file: 'iamerror_32.mp4'
-  v33: &v33_config
-    file: 'iamerror_33.mp4'
+      b: 'v32'
+  v30: &v30_config
+    file: 'iamerror_30.mp4'
     question: 'Weißt du wer der Täter ist?'
     answers:
       a: 'Elias'
@@ -190,52 +179,32 @@ video:
       c: 'Vivi'
       d: 'Sebastian'
     sequels:
-      a: 'v39' # Ende 2
-      b: 'v41' # Ende 3.1 TODO: oder 3.2 iamerror_44
-      c: 'v40' # Ende 2
-      d: 'v38' # Ende 2
-  v34:
-    <<: *v33_config
-    file: 'iamerror_34.mp4'
+      a: 'v36' # Ende 2
+      b: 'v37' # Ende 2
+      c: 'v35' # Ende 2
+      d: 'v34' # Ende 2
+  v31:
+    <<: *v30_config
+    file: 'iamerror_31.mp4'
     question: 'Wer bist du?'
-  v35:
-    file: 'iamerror_35.mp4'
-    question: 'Bilde ich mir das alles nur ein?'
-    answers:
-      a: 'Du verlierst den Verstand'
-      b: 'Nein, der Attentäter verfolgt dich'
-    sequels:
-      a: 'v36'
-      b: 'v37'
-  v36:
-    file: 'iamerror_36.mp4'
-    question: 'Was soll ich tun?'
+  v32:
+    <<: *v30_config
+    file: 'iamerror_32.mp4'
+    question: 'Weißt du wer der Täter ist?'
+  v33:
+    file: 'iamerror_33.mp4'
+    question: '???'
     answers:
       a: 'Hör genau hin!'
       b: 'Hol dir Hilfe!'
     sequels:
-      a: 'v43' # Ende 3.1 TODO: oder 3.2 iamerror_46
-      b: 'v42' # Ende 3.1 TODO: oder 3.2 iamerror_45
+      a: 'v37' # Ende 2
+      b: 'v37' # Ende 2
+  v34:
+    file: 'iamerror_34.mp4'
+  v35:
+    file: 'iamerror_35.mp4'
+  v36:
+    file: 'iamerror_36.mp4'
   v37:
-    <<: *v33_config
     file: 'iamerror_37.mp4'
-  v38:
-    file: 'iamerror_38.mp4'
-  v39:
-    file: 'iamerror_39.mp4'
-  v40:
-    file: 'iamerror_40.mp4'
-  v40:
-    file: 'iamerror_40.mp4'
-  v41:
-    file: 'iamerror_41.mp4'
-  v42:
-    file: 'iamerror_42.mp4'
-  v43:
-    file: 'iamerror_43.mp4'
-  v44:
-    file: 'iamerror_44.mp4'
-  v45:
-    file: 'iamerror_45.mp4'
-  v46:
-    file: 'iamerror_46.mp4'
