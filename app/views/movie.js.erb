@@ -13,7 +13,7 @@ ws.onmessage = function(message) {
     $("#decision-logo ").hide();
     if (data.question != null) { decicsionActive = false; }
   } else if (data.the_end) {
-    $("#decision-logo").html('<div><p>Ende</p></br> <h1> Bitte nimm dir kurz Zeit uns Feedback zu geben. </h1><h1> Mit deiner Hilfe können wir den Film weiter verbessern. </h1></br><h1> Danke! </h1></br><a href="https://indivsurvey.de/umfrage/26279/F66fMP"> Klicke hier um zur Onlineumfrage zu gelangen! </a></div>');
+    $("#decision-logo").html('<div><p>Ende</p></div>');
     $("#decision-logo").fadeIn( 3000 );
   }
 };
