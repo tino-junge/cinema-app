@@ -41,16 +41,16 @@ function handleDecision(e) {
 function showDecisionResult(votes) {
   var votes = JSON.parse(votes);
   if (!jQuery.isEmptyObject(votes)) {
-    $("#decision-result").html('<b>Letzte Abstimmung</b>');
+    $("#decision-result-voting").html('<b>Letzte Abstimmung</b>');
     for (vote in votes) {
-      $("#decision-result").append(
+      $("#decision-result-voting").append(
         "<div> " + vote + " : " + votes[vote] + " Stimme(n) </div>");
     }
-    $("#decision-result").fadeIn( 1000 );
-    $("#decision-result").fadeOut( 10000 );
+    $("#decision-result-voting").fadeIn( 1000 );
+    $("#decision-result-voting").fadeOut( 10000 );
   }
 }
 
 $(document).ready(function() {
-  $("#decision-result").hide();
+  $("#decision-result-voting").hide();
 });

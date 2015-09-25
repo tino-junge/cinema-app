@@ -21,8 +21,16 @@ body {
   color: white;
 }
 
-#decision-result {
+#decision-result-voting {
   text-align: center;
+}
+
+#decision-result-movie {
+  position: absolute;
+  right: 1%;
+  bottom: 15%;
+  font-size: 300%;
+  color: white;
 }
 
 .decided-button {

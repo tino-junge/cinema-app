@@ -135,7 +135,8 @@ module ActiveCinema
         client.send(
           JSON.generate(
             video: video.stream,
-            question: video.question))
+            question: video.question,
+            votes: JSON.generate(votes)))
       end
       @voting_clients.each do |client|
         client.send(
