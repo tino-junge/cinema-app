@@ -1,6 +1,7 @@
 var video           = document.getElementById("video-stream");
 var decisionTime    = 15;
 var decicsionActive = false;
+var decisionSound = new Audio('sounds/decision_sound.mp3');
 
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
@@ -24,6 +25,7 @@ $("#video-stream").on("timeupdate", function() {
     var decicsionTime = this.duration - decisionTime;
 
     if (this.currentTime > decicsionTime && decicsionActive == false) {
+      decisionSound.play();
       $("#decision-logo").fadeIn( 3000 );
       ws.send(JSON.stringify({ decision_active: true }));
       decicsionActive = true;

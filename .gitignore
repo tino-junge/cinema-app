@@ -35,5 +35,6 @@ build/
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 
-# Local video directory for development
+# Local video and sounds directories for development
 /app/public/videos/
+/app/public/sounds/
