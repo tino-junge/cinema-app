@@ -1,0 +1,26 @@
+# Copy this file and remove .sample ending to create your own config file
+
+remote_url: '' # Remote URL for online video streams
+video:
+  v1:
+    file: 'iamerror_01.mp4'
+    question: 'Who should buy milk?'
+    answers:
+      a: 'Hanna'
+      b: 'Sebastian'
+    sequels:
+      a: 'v2'
+      b: 'v3'
+  v2: &v2_config
+    file: 'iamerror_02.mp4'
+    question: 'What should Hanna do?'
+    answers:
+      a: 'Stand up'
+      b: 'Give up'
+    sequels:
+      a: 'v4'
+      b: 'v7'
+  v3:
+    <<: *v2_config
+    file: 'iamerror_03.mp4'
+  # ...
