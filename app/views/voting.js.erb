@@ -1,6 +1,5 @@
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
-  // console.log(data)
 
   if (data.question && data.answers) {
     $("#question").html(data.question);

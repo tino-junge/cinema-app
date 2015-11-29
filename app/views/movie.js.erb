@@ -5,7 +5,6 @@ var decisionSound = new Audio('sounds/decision_sound.mp3');
 
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
-  // console.log(data)
   if (data.video) {
     var source = document.querySelectorAll("#video-player video source");
     source[0].src = data.video;
