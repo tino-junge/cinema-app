@@ -6,6 +6,8 @@ Active Cinema Voting App
 * `git clone <repository-url>` this repository
 * change directory `cd cinema-app`
 * run `bundle install`
+* create .env file (copy .env.sample)
+* create /app/config/config.yml (copy config.yml.sample)
 
 ### Create video and sound files
 
