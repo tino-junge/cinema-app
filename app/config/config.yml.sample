@@ -17,9 +17,6 @@ video:
     answers:
       a: 'Stand up'
       b: 'Give up'
-    sequels:
-      a: 'v4'
-      b: 'v7'
   v3:
     <<: *v2_config
     file: 'iamerror_03.mp4'
