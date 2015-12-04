@@ -13,11 +13,4 @@ class Video
     @answers  = answers
   end
 
-  def self.find_by_name(name)
-    found = nil
-    ObjectSpace.each_object(Video) do |o|
-      found = o if o.name == name
-    end
-    found
-  end
 end
