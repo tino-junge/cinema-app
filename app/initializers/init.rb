@@ -44,8 +44,8 @@ module ActiveCinema
         sequels = {}
         unless settings.video[id]['sequels'].nil?
           settings.video[id]['sequels'].each do |key, sequel_id|
-            # sequel_video is the first return value
-            sequel_video = create_video(sequel_id, all_videos, possible_loop).first
+            sequel_video, returned_videos = create_video(sequel_id, all_videos, possible_loop)
+            all_videos.push(*returned_videos)
             sequels[key] = sequel_video
           end
         end
