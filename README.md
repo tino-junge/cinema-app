@@ -21,3 +21,6 @@ Active Cinema Voting App
 
 * change directory `cd cinema-app`
 * run `foreman start` in cinema-app directory to start the server
+
+## Test
+* run `rake` for the tests
