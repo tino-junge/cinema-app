@@ -26,5 +26,8 @@ Then(/^the error messages tells the path of the missing file:$/) do |path|
   expect(@app).to have_output_on_stderr an_output_string_including(path)
 end
 
-
+Then(/^I there are no error messages/) do
+  expect(aruba.command_monitor.last_command_stopped).to equal(@app) # wait to finish
+  expect(@app.stderr).to be_empty
+end
 

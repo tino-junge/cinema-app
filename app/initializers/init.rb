@@ -29,6 +29,7 @@ module ActiveCinema
     end
 
     def self.create_video(id, all_videos, possible_loop)
+      possible_loop = possible_loop.dup
       if possible_loop.include?(id)
         possible_loop << id
         abort("Node #{id}: Detected a loop #{possible_loop.join("->")}")

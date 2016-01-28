@@ -77,3 +77,37 @@ Feature: Validate configuration file and give helpful error messages
     """
     Node v1: Detected a loop v1->v2->v1
     """
+
+  @aruba
+  Scenario: Backtracking the graph should also remove items from the loop buffer
+    Given I have this config.yml
+    """
+    video:
+      v1:
+        file: 'somevideo1.mp4'
+        question: 'Do you want to see Video 2?'
+        answers:
+          a: 'Sure'
+          b: 'Nah'
+        sequels:
+          a: 'v2'
+          b: 'v3'
+      v2:
+        file: 'somevideo2.mp4'
+        question: 'Do you want to see Video 3?'
+        answers:
+          a: 'Well then...'
+        sequels:
+          b: 'v3'
+      v3:
+        file: 'somevideo3.mp4'
+        question: 'The end!'
+        answers:
+          a: 'OK'
+          b: 'Cool'
+    """
+    And there is a file in 'app/public/videos/somevideo1.mp4'
+    And there is a file in 'app/public/videos/somevideo2.mp4'
+    And there is a file in 'app/public/videos/somevideo3.mp4'
+    When I try to start the server
+    Then I there are no error messages and the server is going to start
