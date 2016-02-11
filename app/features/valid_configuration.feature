@@ -68,6 +68,29 @@ Feature: Validate configuration file and give helpful error messages
     """
 
   @aruba
+  Scenario: Check for missing answers
+    Given I have this config.yml
+    """
+    ---
+    video:
+      v1:
+        file: 'somevideo1.mp4'
+        question: 'Do you want to see Video 2?'
+        answers:
+        sequels:
+          a: 'v2'
+      v2:
+        file: 'somevideo2.mp4'
+    """
+    And there is a file in 'app/public/videos/somevideo1.mp4'
+    And there is a file in 'app/public/videos/somevideo2.mp4'
+    When I try to start the server
+    Then I should see an error message on the command line like this:
+    """
+    Node v1: Sequels without answers.
+    """
+
+  @aruba
   Scenario: There is always a corresponding sequel for an answer
     Given I have this config.yml
     """
