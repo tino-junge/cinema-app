@@ -25,8 +25,9 @@ class Video
     @sequels  = sequels
 
     if @answers.nil?
-      abort("id #{@name}")
+      abort("Node #{name}: Sequels without answers.")
     end
+
     @answers.keys.each do |answer_key|
       unless @sequels.keys.include?(answer_key)
         abort("Node #{name}: Missing sequel for answer '#{answer_key}'.")
