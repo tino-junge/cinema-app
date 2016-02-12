@@ -47,41 +47,79 @@ Feature: Validate configuration file and give helpful error messages
     """
 
   @aruba
-  Scenario: Loops are not allowed
+  Scenario: Dangling pointer
     Given I have this config.yml
     """
+    ---
     video:
       v1:
         file: 'somevideo1.mp4'
         question: 'Do you want to see Video 2?'
         answers:
           a: 'Yes'
-          b: 'Yes'
         sequels:
           a: 'v2'
-          b: 'v2'
+    """
+    And there is a file in 'app/public/videos/somevideo1.mp4'
+    When I try to start the server
+    Then I should see an error message on the command line like this:
+    """
+    Node v1: Couldn't find a sequel node for answer 'a'
+    """
+
+  @aruba
+  Scenario: Check for missing answers
+    Given I have this config.yml
+    """
+    ---
+    video:
+      v1:
+        file: 'somevideo1.mp4'
+        question: 'Do you want to see Video 2?'
+        answers:
+        sequels:
+          a: 'v2'
       v2:
         file: 'somevideo2.mp4'
-        question: 'Do you want to see Video 1?'
-        answers:
-          a: 'Yes'
-          b: 'Yes'
-        sequels:
-          a: 'v1'
-          b: 'v1'
     """
     And there is a file in 'app/public/videos/somevideo1.mp4'
     And there is a file in 'app/public/videos/somevideo2.mp4'
     When I try to start the server
     Then I should see an error message on the command line like this:
     """
-    Node v1: Detected a loop v1->v2->v1
+    Node v1: Sequels without answers.
     """
 
   @aruba
-  Scenario: Backtracking the graph should also remove items from the loop buffer
+  Scenario: There is always a corresponding sequel for an answer
     Given I have this config.yml
     """
+    ---
+    video:
+      v1:
+        file: 'somevideo1.mp4'
+        question: 'Do you want to see Video 2?'
+        answers:
+          a: 'Sure'
+          b: 'Nah'
+        sequels:
+          a: 'v2'
+      v2:
+        file: 'somevideo2.mp4'
+    """
+    And there is a file in 'app/public/videos/somevideo1.mp4'
+    And there is a file in 'app/public/videos/somevideo2.mp4'
+    When I try to start the server
+    Then I should see an error message on the command line like this:
+    """
+    Node v1: Missing sequel for answer 'b'.
+    """
+
+  @aruba
+  Scenario: Finally, with a valid configuration, the server should start
+    Given I have this config.yml
+    """
+    ---
     video:
       v1:
         file: 'somevideo1.mp4'
@@ -98,13 +136,9 @@ Feature: Validate configuration file and give helpful error messages
         answers:
           a: 'Well then...'
         sequels:
-          b: 'v3'
+          a: 'v3'
       v3:
         file: 'somevideo3.mp4'
-        question: 'The end!'
-        answers:
-          a: 'OK'
-          b: 'Cool'
     """
     And there is a file in 'app/public/videos/somevideo1.mp4'
     And there is a file in 'app/public/videos/somevideo2.mp4'
