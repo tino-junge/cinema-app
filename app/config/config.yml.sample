@@ -13,10 +13,6 @@ video:
       b: 'v3'
   v2: &v2_config
     file: 'iamerror_02.mp4'
-    question: 'What should Hanna do?'
-    answers:
-      a: 'Stand up'
-      b: 'Give up'
   v3:
     <<: *v2_config
     file: 'iamerror_03.mp4'
