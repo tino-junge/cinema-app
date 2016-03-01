@@ -8,9 +8,12 @@ body {
   position: relative;
 }
 
-#video-stream {
-  position: relative;
-  width: 100%;
+video {
+  width: 100%    !important;
+  height: auto   !important;
+}
+video::-webkit-media-controls-fullscreen-button {
+  display: none;
 }
 
 #decision-logo {
