@@ -1,4 +1,3 @@
-var decisionSound = new Audio('sounds/decision_sound.mp3');
 var decision_time = 15;
 var preload_time  = 2;
 
@@ -53,7 +52,6 @@ function continuous_checks(){
     var decision_made = this.duration - preload_time;
 
     if (this.currentTime > decision_point && current_state == movieState.WATCH) {
-      decisionSound.play();
       ws.send(JSON.stringify({ decision_active: true }));
       $("#decision-logo").fadeIn( 1000 );
       current_state = movieState.DECIDE;
