@@ -8,9 +8,12 @@ body {
   position: relative;
 }
 
-#video-stream {
-  position: relative;
-  width: 100%;
+video {
+  width: 100%    !important;
+  height: auto   !important;
+}
+video::-webkit-media-controls-fullscreen-button {
+  display: none;
 }
 
 #decision-logo {
@@ -57,7 +60,7 @@ body {
   height: 100px;
   position: relative;
   width: 100px;
-  -webkit-animation: time 20s;
+  -webkit-animation: time 15s;
   -webkit-animation-play-state: paused;
   -webkit-backface-visibility: hidden;
 }

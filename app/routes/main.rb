@@ -9,7 +9,6 @@ module ActiveCinema
     end
 
     get "/movie" do
-      @video = ActiveCinema.the_video
       slim :movie
     end
 
@@ -24,14 +23,5 @@ module ActiveCinema
       erb :"application.js"
     end
 
-    get "/js/movie.js" do
-      content_type :js
-      erb :"movie.js"
-    end
-
-    get "/js/voting.js" do
-      content_type :js
-      erb :"voting.js"
-    end
   end
 end
