@@ -17,7 +17,7 @@ var next_video;
 i=0;
 function append_video(data) {
   var player = $("#video-player");
-  var insert_video_html = "<video controls=\"\" id=\"video-stream-"+i+"\" preload=\"auto\"><source src=\"" + data.video + "\" type=\"video/mp4\">Your browser does not support the video tag. </video>";
+  var insert_video_html = "<video controls=\"\" id=\"video-stream-"+i+"\" preload=\"auto\"><source src=\"" + data.video + "\" type=\"video/mov\">Your browser does not support the video tag. </video>";
   player.append(insert_video_html);
 
   next_video = $("#video-stream-" + i);
