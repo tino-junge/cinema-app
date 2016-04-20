@@ -15,7 +15,7 @@ video {
 video::-webkit-media-controls-fullscreen-button {
   display: none;
 }
-
+/* can't test that one locally but this is the place where the decision logo is styled @paulactivecinema */
 #decision-logo {
   position: absolute;
   right: 1%;
