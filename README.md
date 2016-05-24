@@ -1,6 +1,6 @@
 # Links zum Projekt
 * https://www.facebook.com/activecinema (please like and share :)
-* https://www.youtube.com/activecinema14
+* https://www.youtube.com/activecinema14 (please like and share :)
 
 # cinema-app
 Active Cinema Voting App
