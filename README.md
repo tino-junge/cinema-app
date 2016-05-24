@@ -1,5 +1,5 @@
 # Links zum Projekt
-* https://www.facebook.com/activecinema
+* https://www.facebook.com/activecinema (please like and share :)
 * https://www.youtube.com/activecinema14
 
 # cinema-app
