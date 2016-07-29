@@ -60,7 +60,7 @@ video::-webkit-media-controls-fullscreen-button {
   height: 100px;
   position: relative;
   width: 100px;
-  -webkit-animation: time 15s;
+  -webkit-animation: time 10s;
   -webkit-animation-play-state: paused;
   -webkit-backface-visibility: hidden;
 }
@@ -77,7 +77,7 @@ video::-webkit-media-controls-fullscreen-button {
   position: absolute;
   top: 0;
   width: 50%;
-  -webkit-animation: mask 15s;
+  -webkit-animation: mask 10s;
   -webkit-transform-origin: 100% 50%;
   -webkit-animation-timing-function: linear;
   -webkit-animation-direction: reverse;
