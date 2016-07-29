@@ -1,4 +1,4 @@
-var decision_time = 15;
+var decision_time = 10;
 var preload_time  = 2;
 
 var movieState = {
