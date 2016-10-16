@@ -8,15 +8,17 @@ class Video
   def initialize(name, file)
     @name = name
 
-    if file.nil?
-      abort("Node #{@name}: No video file!'")
-    end
-    path = Pathname.new(ActiveCinema::App.settings.root).join("public").join("videos").join(file)
-    unless File.exists?(path)
-      abort("Node #{@name}: No corresponding file in '#{path}'")
+    unless ENV['RACK_ENV'] == "production"
+      if file.nil?
+        abort("Node #{@name}: No video file!'")
+      end
+      path = Pathname.new(ActiveCinema::App.settings.root).join("public").join("videos").join(file)
+      unless File.exists?(path)
+        abort("Node #{@name}: No corresponding file in '#{path}'")
+      end
     end
 
-    @stream = ENV['RACK_ENV'] == "production" ? ActiveCinema::App.settings.remote_url + file + "&download" : "videos/" + file
+    @stream = ENV['RACK_ENV'] == "production" ? ActiveCinema::App.settings.remote_url + file + "/download" : "videos/" + file
   end
 
   def connect(question, answers, sequels)
