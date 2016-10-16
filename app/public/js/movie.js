@@ -22,7 +22,7 @@ function append_video(data) {
 
   next_video = $("#video-stream-" + i);
   next_video.hide();
-  if (data.question != null) { 
+  if (data.question != null) {
     next_video.on("timeupdate", continuous_checks);
     next_video.on("ended", switch_video);
   }
