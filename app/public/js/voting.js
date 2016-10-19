@@ -43,7 +43,7 @@ function handleDecision(e) {
 function showDecisionResult(votes) {
   var votes = JSON.parse(votes);
   if (!jQuery.isEmptyObject(votes)) {
-    $("#decision-result-voting").html('<b>Letzte Abstimmung</b>');
+    $("#decision-result-voting").html('<b style="font-variant: small-caps">Letzte Abstimmung</b>');
     for (vote in votes) {
       $("#decision-result-voting").append(
         "<div> " + vote + " : " + votes[vote] + " Stimme(n) </div>");

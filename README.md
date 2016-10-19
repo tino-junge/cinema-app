@@ -28,3 +28,17 @@ Active Cinema Voting App
 
 ## Test
 * run `rake` for the tests
+
+## Deployment
+Host you cinema server online and watch together with friends!
+Proposed setup is server hosting on Heroku and file hosting on Owncloud.
+
+* Upload your files to Owncloud and generate sharable links
+* Change file keys within your config file to shared hash keys (Warning: currently only Owncloud hosting supported)
+* Set `remote_url` key in config file to your Owncloud domain
+* Upload your config file somewhere online (why not in owncloud)
+* Deploy your server code. Heroku is recommended :) Just connect a new app with you github repo and Heroku takes care of the rest ;)
+* Set environment variables on your sever application:
+  * set env `CONFIG_FILE` to `<url-to-config-file>`
+  * set env `RACK_ENV` to `production`
+* Have fun!
