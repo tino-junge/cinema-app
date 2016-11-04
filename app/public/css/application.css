@@ -4,13 +4,26 @@ body {
   font-family: Futura;
 }
 
+#video-container {
+  display: table;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+}
+
 #video-player {
-  position: relative;
+  #position: absolute;
+  #top: 50%;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 video {
-  width: 100%    !important;
-  height: auto   !important;
+  width: 100%;
+  #position: relative;
+  #top: -50%;
+  margin: 0 auto;
 }
 video::-webkit-media-controls-fullscreen-button {
   display: none;
