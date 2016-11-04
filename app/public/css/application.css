@@ -1,7 +1,6 @@
 body {
   background: black;
   overflow: hidden;
-  margin-top: 10px;
   font-family: Futura;
 }
 
@@ -15,6 +14,15 @@ video {
 }
 video::-webkit-media-controls-fullscreen-button {
   display: none;
+}
+
+.container {
+  padding: 15px;
+  margin: auto;
+}
+
+#decision-container {
+  position: relative;
 }
 
 #decision-logo {
