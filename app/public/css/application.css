@@ -39,11 +39,11 @@ video::-webkit-media-controls-fullscreen-button {
 }
 
 #decision-logo {
-  position: absolute;
-  right: 1%;
-  bottom: 15%;
   font-size: 50px;
   color: white;
+  position: absolute;
+  top: calc(100% + 40px);
+  right: 40px;
 }
 
 #decision-result-voting {
@@ -51,11 +51,11 @@ video::-webkit-media-controls-fullscreen-button {
 }
 
 #decision-result-movie {
-  position: absolute;
-  right: 1%;
-  bottom: 15%;
   font-size: 200%;
   color: white;
+  position: absolute;
+  top: calc(100% + 30px);
+  right: 30px;
 }
 
 .decided-button {
@@ -86,7 +86,7 @@ video::-webkit-media-controls-fullscreen-button {
   height: 50px;
   position: relative;
   width: 50px;
-  -webkit-animation: time 8s;
+  -webkit-animation: time 8.8s;
   -webkit-animation-play-state: paused;
   -webkit-backface-visibility: hidden;
 }
@@ -103,7 +103,7 @@ video::-webkit-media-controls-fullscreen-button {
   position: absolute;
   top: 0;
   width: 50%;
-  -webkit-animation: mask 8s;
+  -webkit-animation: mask 8.8s;
   -webkit-transform-origin: 100% 50%;
   -webkit-animation-timing-function: linear;
   -webkit-animation-direction: reverse;
