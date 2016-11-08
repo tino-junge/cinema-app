@@ -4,6 +4,7 @@ ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
 
   if (data.question && data.answers) {
+    hideDecision();
     $("#question").html(data.question);
     $("#answers").html('');
     for (answer_key in data.answers) {
@@ -12,7 +13,7 @@ ws.onmessage = function(message) {
         data.answers[answer_key]+"</button>");
     }
   }
-  if (data.decision_active == true) {
+  if (data.decision_active === true) {
     showDecision();
   } else {
     hideDecision();
@@ -28,16 +29,21 @@ function showDecision() {
   $("#decision-panel").show();
 }
 
-function hideDecision() {
-  $("#decision-panel").delay( 500 ).fadeOut( 500 );
-  $("#waiting-panel").delay( 1000 ).fadeIn( 500 );
+function hideDecision(smooth) {
+  if (smooth) {
+    $("#decision-panel").delay( 500 ).fadeOut( 500 );
+    $("#waiting-panel").delay( 1000 ).fadeIn( 500 );
+  } else {
+    $("#decision-panel").fadeOut();
+    $("#waiting-panel").fadeIn();
+  }
 }
 
 function handleDecision(e) {
   $(".decision-btn").attr("disabled", "disabled");
   $("#"+e+"-btn").addClass('decided-button');
   ws.send(JSON.stringify({ decided: e }));
-  hideDecision();
+  hideDecision(true);
 }
 
 function showDecisionResult(votes) {

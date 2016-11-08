@@ -59,7 +59,7 @@ function continuous_checks(){
 
   if (this.currentTime > decision_made && current_state == movieState.DECIDE) {
     ws.send(JSON.stringify({ video: 'ended' }));
-    $("#decision-logo ").fadeOut(1000);
+    $("#decision-logo ").fadeOut( 1000 );
     current_state = movieState.PRELOAD;
   }
 }
