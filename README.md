@@ -1,9 +1,9 @@
-# Links to movie and moviemakers
-* https://www.facebook.com/activecinema (please like and share :)
-* https://www.youtube.com/activecinema14 (please like and share :)
-
 # cinema-app
 Active Cinema Voting App
+
+# Social media
+* [Facebook](https://www.facebook.com/activecinema) (please like and share :)
+* [YouTube](https://www.youtube.com/activecinema14) (please like and share :)
 
 ## Setup
 
@@ -30,15 +30,15 @@ Active Cinema Voting App
 * run `rake` for the tests
 
 ## Deployment
-Host you cinema server online and watch together with friends!
-Proposed setup is server hosting on Heroku and file hosting on Owncloud.
+Host your own cinema server and watch together with friends remotely!
+Recommended setup is server hosting on [Heroku](https://www.heroku.com/) and file hosting on [ownCloud](https://owncloud.com/).
 
-* Upload your files to Owncloud and generate sharable links
-* Change file keys within your config file to shared hash keys (Warning: currently only Owncloud hosting supported)
-* Set `remote_url` key in config file to your Owncloud domain
-* Upload your config file somewhere online (why not in owncloud)
-* Deploy your server code. Heroku is recommended :) Just connect a new app with you github repo and Heroku takes care of the rest ;)
-* Set environment variables on your sever application:
+* Upload your video files to ownCloud and generate sharable links
+* Change video file keys within your config file to shared hash keys (Note: currently only ownCloud hosting supported)
+* Set `remote_url` key in config file to your ownCloud domain
+* Upload your config file somewhere online (e.g. ownCloud or Dropbox)
+* Deploy your server code. Heroku is recommended :) Just connect a new app with your GitHub repo and Heroku takes care of the rest ;)
+* Set environment variables on your server application in Heroku:
   * set env `CONFIG_FILE` to `<url-to-config-file>`
   * set env `RACK_ENV` to `production`
 * Have fun!
