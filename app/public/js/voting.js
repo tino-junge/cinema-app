@@ -54,7 +54,7 @@ function showDecisionResult(votes) {
       $("#decision-result-voting").append(
         "<div> " + vote + " : " + votes[vote] + " Stimme(n) </div>");
     }
-    $("#decision-result-voting").fadeIn( 1000 );
+    $("#decision-result-voting").delay( 1500 ).fadeIn( 1000 );
     $("#decision-result-voting").fadeOut( 10000 );
   }
 }
