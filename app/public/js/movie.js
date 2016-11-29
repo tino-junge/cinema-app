@@ -9,10 +9,10 @@ var movieState = {
 };
 
 var decisionState = {
-  'a' : 0,
-  'b' : 1,
-  'c' : 2,
-  'd' : 3
+  a : 0,
+  b : 1,
+  c : 2,
+  d : 3
 };
 
 var current_state = movieState.INIT;
