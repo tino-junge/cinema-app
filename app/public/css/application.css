@@ -58,6 +58,16 @@ video::-webkit-media-controls-fullscreen-button {
   right: 30px;
 }
 
+.decision-arrow {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid white;
+  float: left;
+  margin: 10px 10px 10px -20px;
+}
+
 .decided-button {
   color: black !important;
   font-weight: 800;
