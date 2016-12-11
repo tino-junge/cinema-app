@@ -32,7 +32,7 @@ module ActiveCinema
             @decision_active  = false
             @video = ActiveCinema.set_current(ActiveCinema.start_video)
             @votes = init_votes(@video)
-            send_next_video(@video, {})
+            send_next_video(@video, {}, '')
           else
             add_all(ws)
           end
@@ -50,17 +50,18 @@ module ActiveCinema
             @video = ActiveCinema.start_video
             ActiveCinema.set_current(@video)
             @votes = init_votes(@video)
-            send_next_video(@video, {})
+            send_next_video(@video, {}, '')
           elsif json['video'] == 'ended'
             p [:votes, @votes]
             if !@votes.nil? && !@votes.empty? # TODO: check for index
               voting = prepare_votes(@video, @votes)
-              @video = @video.sequels[random_max(@votes)]
-              send_next_video(@video, voting)
+              decision = random_max(@votes)
+              @video = @video.sequels[decision]
+              send_next_video(@video, voting, decision)
               @votes = init_votes(@video)
             elsif !@video.sequels.empty?
               @video = @video.sequels.sample
-              send_next_video(@video, {})
+              send_next_video(@video, {}, '')
             else
               the_end
             end
@@ -130,18 +131,20 @@ module ActiveCinema
                 decision_active: decision_active))
     end
 
-    def send_next_video(video, votes)
+    def send_next_video(video, votes, decision)
       @movie_clients.each do |client|
         client.send(
           JSON.generate(
             video: video.stream,
             question: video.question,
+            decision: decision,
             votes: JSON.generate(votes)))
       end
       @voting_clients.each do |client|
         client.send(
           JSON.generate(
             question: video.question,
+            decision: decision,
             answers: video.answers,
             votes: JSON.generate(votes)))
       end

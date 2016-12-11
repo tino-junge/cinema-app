@@ -8,6 +8,13 @@ var movieState = {
   PRELOAD : 3,
 };
 
+var decisionState = {
+  a : 0,
+  b : 1,
+  c : 2,
+  d : 3
+};
+
 var current_state = movieState.INIT;
 var current_video;
 var next_video;
@@ -68,7 +75,7 @@ ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
   if (data.video) {
     append_video(data);
-    if (data.votes) { edit_decision_results(data.votes) }
+    if (data.votes) { edit_decision_results(data.votes, data.decision) }
   } else if (data.the_end) {
     $("#decision-logo").html('<div><p>Ende</p></div>');
     $("#decision-logo").fadeIn( 1000 );
@@ -77,14 +84,18 @@ ws.onmessage = function(message) {
 
 
 
-function edit_decision_results(votes) {
+function edit_decision_results(votes, decision) {
+  var decisionIndex = decisionState[decision];
   var votes = JSON.parse(votes);
   if (!jQuery.isEmptyObject(votes)) {
     $("#decision-result-movie").html('');
+    var index = 0;
     for (vote in votes) {
-      $("#decision-result-movie").append(
-        "<div>" + vote + " : " + votes[vote] + "</div>");
-    }
+      $("#decision-result-movie").append("<div>");
+      if (decisionIndex === index) { $("#decision-result-movie").append("<div class='decision-arrow'/>"); }
+      $("#decision-result-movie").append(vote + " : " + votes[vote] + "</div>");
+      index++;
+    };
   }
 }
 
