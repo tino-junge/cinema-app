@@ -1,4 +1,4 @@
-var decisionSound = new Audio('sounds/decision_sound.mp3');
+//var decisionSound = new Audio('sounds/decision_sound.mp3');
 
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
@@ -24,7 +24,7 @@ ws.onmessage = function(message) {
 };
 
 function showDecision() {
-  decisionSound.play();
+  //decisionSound.play();
   $("#waiting-panel").hide();
   $("#decision-panel").show();
 }
