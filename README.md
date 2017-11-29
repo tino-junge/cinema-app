@@ -11,7 +11,7 @@
 * `mkdir app/public/videos`
 * copy all video files to new "videos folder"
 * it is recommented to use the mp4 (h264) codec - Youtube Standard (same for audio)
-https://support.google.com/youtube/answer/1722171?hl=de
+* https://support.google.com/youtube/answer/1722171?hl=de
 
 ## Running
 * change directory `cd cinema-app`
