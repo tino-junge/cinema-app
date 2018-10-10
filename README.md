@@ -16,7 +16,7 @@
 ## Running
 * change directory `cd cinema-app`
 * run `foreman start` in cinema-app directory to start the server
-* Local Host: it recommented to use Linus (OS)
+* Local Host: it is recommented to use Linux
 * Browser: it is recommented to play the video files via google chrome (100% compatible with the "mp4 (h264) - Youtube Standard")
 
 ## Test
